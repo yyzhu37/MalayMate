@@ -204,10 +204,10 @@ def build_deck(frequency, dictionary, sentences, limit=None):
                     ),
                     source(
                         "frequency",
-                        "MalayMate sample frequency list",
+                        "MalayMate curated beginner frequency list",
                         "local-file://content/raw/sample_frequency.tsv",
-                        DEFAULT_LICENSE,
-                        DEFAULT_ATTRIBUTION,
+                        "CC BY 4.0",
+                        "MalayMate curated beginner vocabulary list",
                         "needs-review",
                     ),
                 ],

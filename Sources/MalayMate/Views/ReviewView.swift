@@ -8,6 +8,8 @@ struct ReviewView: View {
     @State private var dueItems: [DueReviewItem] = []
     @State private var currentIndex = 0
     @State private var isAnswerRevealed = false
+    @State private var answerText = ""
+    @State private var spellingEvaluation: SpellingEvaluation?
     @State private var statusMessage: String?
     @State private var speechService = SpeechService()
 
@@ -88,11 +90,18 @@ struct ReviewView: View {
                     Text(item.card.answer)
                         .font(.title2.weight(.medium))
                         .textSelection(.enabled)
+                    if let spellingEvaluation {
+                        Label(spellingResultText(for: spellingEvaluation), systemImage: spellingResultIcon(for: spellingEvaluation))
+                            .font(.callout.weight(.medium))
+                            .foregroundStyle(spellingResultStyle(for: spellingEvaluation))
+                    }
                     if !item.word.pronunciationNotes.isEmpty {
                         Text(item.word.pronunciationNotes)
                             .foregroundStyle(.secondary)
                     }
                 }
+            } else if isSpellingPractice(item) {
+                spellingInput(for: item)
             } else {
                 Text("先想答案，再点击 Reveal。")
                     .foregroundStyle(.secondary)
@@ -106,6 +115,16 @@ struct ReviewView: View {
                 }
                 .keyboardShortcut(.space, modifiers: [])
                 .disabled(isAnswerRevealed)
+
+                if isSpellingPractice(item) {
+                    Button {
+                        checkSpelling(for: item)
+                    } label: {
+                        Label("Check", systemImage: "checkmark.circle")
+                    }
+                    .keyboardShortcut(.return, modifiers: [])
+                    .disabled(answerText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || isAnswerRevealed)
+                }
 
                 Button {
                     playAudio(for: item)
@@ -157,7 +176,7 @@ struct ReviewView: View {
         do {
             dueItems = try ReviewSession(context: modelContext).dueCards(now: .now)
             currentIndex = 0
-            isAnswerRevealed = false
+            resetAnswerState()
             statusMessage = dueItems.isEmpty ? "All caught up." : nil
         } catch {
             statusMessage = "Could not load reviews: \(error.localizedDescription)"
@@ -167,6 +186,12 @@ struct ReviewView: View {
     private func revealAnswer() {
         isAnswerRevealed = true
         statusMessage = nil
+    }
+
+    private func resetAnswerState() {
+        isAnswerRevealed = false
+        answerText = ""
+        spellingEvaluation = nil
     }
 
     private func canPlayAudio(for item: DueReviewItem) -> Bool {
@@ -199,6 +224,66 @@ struct ReviewView: View {
         }
     }
 
+    private func isSpellingPractice(_ item: DueReviewItem) -> Bool {
+        CardDirection(rawValue: item.card.directionRaw) == .chineseToMalay
+    }
+
+    private func spellingInput(for item: DueReviewItem) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("输入马来语拼写")
+                .font(.headline)
+            TextField("Malay answer", text: $answerText)
+                .textFieldStyle(.roundedBorder)
+                .frame(maxWidth: 360)
+                .onSubmit {
+                    checkSpelling(for: item)
+                }
+            Text("Check 后再自己评分。")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+        }
+    }
+
+    private func checkSpelling(for item: DueReviewItem) {
+        let evaluation = SpellingEvaluator.evaluate(answer: answerText, expected: item.card.answer)
+        spellingEvaluation = evaluation
+        isAnswerRevealed = true
+        statusMessage = spellingResultText(for: evaluation)
+    }
+
+    private func spellingResultText(for evaluation: SpellingEvaluation) -> String {
+        switch evaluation.result {
+        case .correct:
+            return "拼写正确"
+        case .close:
+            return "接近，差 \(evaluation.distance) 处"
+        case .incorrect:
+            return "拼写不对，先看正确答案"
+        }
+    }
+
+    private func spellingResultIcon(for evaluation: SpellingEvaluation) -> String {
+        switch evaluation.result {
+        case .correct:
+            return "checkmark.circle"
+        case .close:
+            return "exclamationmark.circle"
+        case .incorrect:
+            return "xmark.circle"
+        }
+    }
+
+    private func spellingResultStyle(for evaluation: SpellingEvaluation) -> Color {
+        switch evaluation.result {
+        case .correct:
+            return .green
+        case .close:
+            return .orange
+        case .incorrect:
+            return .red
+        }
+    }
+
     private func apply(_ rating: ReviewRating) {
         guard let currentItem else {
             return
@@ -211,10 +296,10 @@ struct ReviewView: View {
                 refresh()
             } else if currentIndex >= dueItems.count {
                 currentIndex = max(dueItems.count - 1, 0)
-                isAnswerRevealed = false
+                resetAnswerState()
                 statusMessage = nil
             } else {
-                isAnswerRevealed = false
+                resetAnswerState()
                 statusMessage = nil
             }
         } catch {

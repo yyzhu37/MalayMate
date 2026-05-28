@@ -7,106 +7,6 @@
       "name": "Starter Local Open-Access",
       "words": [
         {
-          "chineseMeaning": "吃；进食",
-          "examples": [
-            {
-              "chinese": "我吃米饭。",
-              "id": "open-frequency-starter-example-makan-1-eaf4c29876",
-              "malay": "Saya makan nasi.",
-              "sourceRefs": [
-                {
-                  "attribution": "MalayMate sample raw sentences",
-                  "field": "example",
-                  "license": "Open access sample",
-                  "retrievedAt": "2026-05-28T00:00:00Z",
-                  "reviewStatus": "needs-review",
-                  "sourceName": "MalayMate sample sentences",
-                  "sourceUrl": "https://example.org/open-sentences/makan-1"
-                }
-              ]
-            }
-          ],
-          "id": "open-frequency-starter-word-makan-280546a3a4",
-          "languageCode": "ms",
-          "partOfSpeech": "verb",
-          "pronunciationNotes": "",
-          "sourceRefs": [
-            {
-              "attribution": "MalayMate sample raw dictionary",
-              "field": "term",
-              "license": "Open access sample",
-              "retrievedAt": "2026-05-28T00:00:00Z",
-              "reviewStatus": "needs-review",
-              "sourceName": "MalayMate sample dictionary",
-              "sourceUrl": "https://example.org/open-dictionary/makan"
-            },
-            {
-              "attribution": "MalayMate local content builder",
-              "field": "frequency",
-              "license": "Open access; verify source-specific terms before redistribution",
-              "retrievedAt": "2026-05-28T00:00:00Z",
-              "reviewStatus": "needs-review",
-              "sourceName": "MalayMate sample frequency list",
-              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
-            }
-          ],
-          "syllables": [
-            "ma",
-            "kan"
-          ],
-          "term": "makan"
-        },
-        {
-          "chineseMeaning": "喝；饮用",
-          "examples": [
-            {
-              "chinese": "我喝水。",
-              "id": "open-frequency-starter-example-minum-1-5b2908534c",
-              "malay": "Saya minum air.",
-              "sourceRefs": [
-                {
-                  "attribution": "MalayMate sample raw sentences",
-                  "field": "example",
-                  "license": "Open access sample",
-                  "retrievedAt": "2026-05-28T00:00:00Z",
-                  "reviewStatus": "needs-review",
-                  "sourceName": "MalayMate sample sentences",
-                  "sourceUrl": "https://example.org/open-sentences/minum-1"
-                }
-              ]
-            }
-          ],
-          "id": "open-frequency-starter-word-minum-a091d99e3b",
-          "languageCode": "ms",
-          "partOfSpeech": "verb",
-          "pronunciationNotes": "",
-          "sourceRefs": [
-            {
-              "attribution": "MalayMate sample raw dictionary",
-              "field": "term",
-              "license": "Open access sample",
-              "retrievedAt": "2026-05-28T00:00:00Z",
-              "reviewStatus": "needs-review",
-              "sourceName": "MalayMate sample dictionary",
-              "sourceUrl": "https://example.org/open-dictionary/minum"
-            },
-            {
-              "attribution": "MalayMate local content builder",
-              "field": "frequency",
-              "license": "Open access; verify source-specific terms before redistribution",
-              "retrievedAt": "2026-05-28T00:00:00Z",
-              "reviewStatus": "needs-review",
-              "sourceName": "MalayMate sample frequency list",
-              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
-            }
-          ],
-          "syllables": [
-            "mi",
-            "num"
-          ],
-          "term": "minum"
-        },
-        {
           "chineseMeaning": "学习",
           "examples": [
             {
@@ -115,13 +15,13 @@
               "malay": "Saya belajar bahasa Melayu.",
               "sourceRefs": [
                 {
-                  "attribution": "MalayMate sample raw sentences",
+                  "attribution": "MalayMate authored beginner examples",
                   "field": "example",
-                  "license": "Open access sample",
+                  "license": "CC BY 4.0",
                   "retrievedAt": "2026-05-28T00:00:00Z",
                   "reviewStatus": "needs-review",
-                  "sourceName": "MalayMate sample sentences",
-                  "sourceUrl": "https://example.org/open-sentences/belajar-1"
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#belajar"
                 }
               ]
             }
@@ -129,24 +29,24 @@
           "id": "open-frequency-starter-word-belajar-e0b71a0d05",
           "languageCode": "ms",
           "partOfSpeech": "verb",
-          "pronunciationNotes": "",
+          "pronunciationNotes": "buh-LAH-jar",
           "sourceRefs": [
             {
-              "attribution": "MalayMate sample raw dictionary",
+              "attribution": "Wiktionary contributors",
               "field": "term",
-              "license": "Open access sample",
+              "license": "CC BY-SA 4.0; GFDL",
               "retrievedAt": "2026-05-28T00:00:00Z",
               "reviewStatus": "needs-review",
-              "sourceName": "MalayMate sample dictionary",
-              "sourceUrl": "https://example.org/open-dictionary/belajar"
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/belajar#Malay"
             },
             {
-              "attribution": "MalayMate local content builder",
+              "attribution": "MalayMate curated beginner vocabulary list",
               "field": "frequency",
-              "license": "Open access; verify source-specific terms before redistribution",
+              "license": "CC BY 4.0",
               "retrievedAt": "2026-05-28T00:00:00Z",
               "reviewStatus": "needs-review",
-              "sourceName": "MalayMate sample frequency list",
+              "sourceName": "MalayMate curated beginner frequency list",
               "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
             }
           ],
@@ -156,6 +56,1955 @@
             "jar"
           ],
           "term": "belajar"
+        },
+        {
+          "chineseMeaning": "你",
+          "examples": [
+            {
+              "chinese": "你想喝水吗？",
+              "id": "open-frequency-starter-example-awak-1-34e028320c",
+              "malay": "Awak mahu minum air?",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#awak"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-awak-d802d68159",
+          "languageCode": "ms",
+          "partOfSpeech": "pronoun",
+          "pronunciationNotes": "AH-wak",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/awak#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "a",
+            "wak"
+          ],
+          "term": "awak"
+        },
+        {
+          "chineseMeaning": "他；她",
+          "examples": [
+            {
+              "chinese": "他/她去学校。",
+              "id": "open-frequency-starter-example-dia-1-a7c16e01b8",
+              "malay": "Dia pergi ke sekolah.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#dia"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-dia-0addcc1de2",
+          "languageCode": "ms",
+          "partOfSpeech": "pronoun",
+          "pronunciationNotes": "DEE-ah",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/dia#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "di",
+            "a"
+          ],
+          "term": "dia"
+        },
+        {
+          "chineseMeaning": "我们（不包括听者）",
+          "examples": [
+            {
+              "chinese": "我们今天学习。",
+              "id": "open-frequency-starter-example-kami-1-13310254b7",
+              "malay": "Kami belajar hari ini.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#kami"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-kami-2ed9585aa9",
+          "languageCode": "ms",
+          "partOfSpeech": "pronoun",
+          "pronunciationNotes": "KAH-mee",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/kami#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ka",
+            "mi"
+          ],
+          "term": "kami"
+        },
+        {
+          "chineseMeaning": "我们（包括听者）",
+          "examples": [
+            {
+              "chinese": "我们一起吃饭。",
+              "id": "open-frequency-starter-example-kita-1-bb916099ad",
+              "malay": "Kita makan bersama.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#kita"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-kita-fea0c432ca",
+          "languageCode": "ms",
+          "partOfSpeech": "pronoun",
+          "pronunciationNotes": "KEE-tah",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/kita#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ki",
+            "ta"
+          ],
+          "term": "kita"
+        },
+        {
+          "chineseMeaning": "这；这个",
+          "examples": [
+            {
+              "chinese": "这是我的书。",
+              "id": "open-frequency-starter-example-ini-1-6dcd17a709",
+              "malay": "Ini buku saya.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#ini"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-ini-57b64c5212",
+          "languageCode": "ms",
+          "partOfSpeech": "determiner",
+          "pronunciationNotes": "EE-nee",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/ini#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "i",
+            "ni"
+          ],
+          "term": "ini"
+        },
+        {
+          "chineseMeaning": "那；那个",
+          "examples": [
+            {
+              "chinese": "那是他/她的家。",
+              "id": "open-frequency-starter-example-itu-1-d3a299ef50",
+              "malay": "Itu rumah dia.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#itu"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-itu-8606cf38f7",
+          "languageCode": "ms",
+          "partOfSpeech": "determiner",
+          "pronunciationNotes": "EE-too",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/itu#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "i",
+            "tu"
+          ],
+          "term": "itu"
+        },
+        {
+          "chineseMeaning": "什么",
+          "examples": [
+            {
+              "chinese": "这是什么？",
+              "id": "open-frequency-starter-example-apa-1-f097160fac",
+              "malay": "Apa ini?",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#apa"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-apa-b3e1886e6a",
+          "languageCode": "ms",
+          "partOfSpeech": "pronoun",
+          "pronunciationNotes": "AH-pah",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/apa#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "a",
+            "pa"
+          ],
+          "term": "apa"
+        },
+        {
+          "chineseMeaning": "谁",
+          "examples": [
+            {
+              "chinese": "你叫什么名字？",
+              "id": "open-frequency-starter-example-siapa-1-de86ef6f5a",
+              "malay": "Siapa nama awak?",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#siapa"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-siapa-0cc4fcdac4",
+          "languageCode": "ms",
+          "partOfSpeech": "pronoun",
+          "pronunciationNotes": "see-AH-pah",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/siapa#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "si",
+            "a",
+            "pa"
+          ],
+          "term": "siapa"
+        },
+        {
+          "chineseMeaning": "在；于",
+          "examples": [
+            {
+              "chinese": "我在家。",
+              "id": "open-frequency-starter-example-di-1-74781fe1a9",
+              "malay": "Saya di rumah.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#di"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-di-225ed6562f",
+          "languageCode": "ms",
+          "partOfSpeech": "preposition",
+          "pronunciationNotes": "dee",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/di#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "di"
+          ],
+          "term": "di"
+        },
+        {
+          "chineseMeaning": "到；向",
+          "examples": [
+            {
+              "chinese": "我们去市场。",
+              "id": "open-frequency-starter-example-ke-1-77eec29504",
+              "malay": "Kami pergi ke pasar.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#ke"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-ke-8e52027051",
+          "languageCode": "ms",
+          "partOfSpeech": "preposition",
+          "pronunciationNotes": "kuh",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/ke#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ke"
+          ],
+          "term": "ke"
+        },
+        {
+          "chineseMeaning": "从；来自",
+          "examples": [
+            {
+              "chinese": "他/她从学校来。",
+              "id": "open-frequency-starter-example-dari-1-640c1ee68c",
+              "malay": "Dia dari sekolah.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#dari"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-dari-cfec54b531",
+          "languageCode": "ms",
+          "partOfSpeech": "preposition",
+          "pronunciationNotes": "DAH-ree",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/dari#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "da",
+            "ri"
+          ],
+          "term": "dari"
+        },
+        {
+          "chineseMeaning": "和；与",
+          "examples": [
+            {
+              "chinese": "我和你学习。",
+              "id": "open-frequency-starter-example-dan-1-5bad187677",
+              "malay": "Saya dan awak belajar.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#dan"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-dan-ec4f2dbb3b",
+          "languageCode": "ms",
+          "partOfSpeech": "conjunction",
+          "pronunciationNotes": "dahn",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/dan#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "dan"
+          ],
+          "term": "dan"
+        },
+        {
+          "chineseMeaning": "或者",
+          "examples": [
+            {
+              "chinese": "你要咖啡还是水？",
+              "id": "open-frequency-starter-example-atau-1-445fdef296",
+              "malay": "Awak mahu kopi atau air?",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#atau"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-atau-d6b14162dd",
+          "languageCode": "ms",
+          "partOfSpeech": "conjunction",
+          "pronunciationNotes": "AH-tow",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/atau#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "a",
+            "tau"
+          ],
+          "term": "atau"
+        },
+        {
+          "chineseMeaning": "不；没有",
+          "examples": [
+            {
+              "chinese": "我不要咖啡。",
+              "id": "open-frequency-starter-example-tidak-1-c044229d5b",
+              "malay": "Saya tidak mahu kopi.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#tidak"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-tidak-a12b2ad066",
+          "languageCode": "ms",
+          "partOfSpeech": "adverb",
+          "pronunciationNotes": "TEE-dak",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/tidak#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ti",
+            "dak"
+          ],
+          "term": "tidak"
+        },
+        {
+          "chineseMeaning": "是；对",
+          "examples": [
+            {
+              "chinese": "是的，我想吃饭。",
+              "id": "open-frequency-starter-example-ya-1-08ff024d48",
+              "malay": "Ya, saya mahu makan.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#ya"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-ya-6663103a3e",
+          "languageCode": "ms",
+          "partOfSpeech": "interjection",
+          "pronunciationNotes": "yah",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/ya#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ya"
+          ],
+          "term": "ya"
+        },
+        {
+          "chineseMeaning": "可以；能够",
+          "examples": [
+            {
+              "chinese": "你可以读这个。",
+              "id": "open-frequency-starter-example-boleh-1-5db759f721",
+              "malay": "Awak boleh baca ini.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#boleh"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-boleh-c34f6dbc8e",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "BOH-leh",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/boleh#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "bo",
+            "leh"
+          ],
+          "term": "boleh"
+        },
+        {
+          "chineseMeaning": "想要；要",
+          "examples": [
+            {
+              "chinese": "我想去。",
+              "id": "open-frequency-starter-example-mahu-1-80a283e622",
+              "malay": "Saya mahu pergi.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#mahu"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-mahu-970a5ac7a8",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "MAH-hoo",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/mahu#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ma",
+            "hu"
+          ],
+          "term": "mahu"
+        },
+        {
+          "chineseMeaning": "去",
+          "examples": [
+            {
+              "chinese": "我们今天早上去。",
+              "id": "open-frequency-starter-example-pergi-1-f0c7bb5872",
+              "malay": "Kita pergi pagi ini.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#pergi"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-pergi-503ebd116b",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "PUHR-gee",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/pergi#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "per",
+            "gi"
+          ],
+          "term": "pergi"
+        },
+        {
+          "chineseMeaning": "来；到达",
+          "examples": [
+            {
+              "chinese": "他/她从市场来。",
+              "id": "open-frequency-starter-example-datang-1-c5d14eb795",
+              "malay": "Dia datang dari pasar.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#datang"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-datang-08da3dfa74",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "DAH-tang",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/datang#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "da",
+            "tang"
+          ],
+          "term": "datang"
+        },
+        {
+          "chineseMeaning": "坐；居住",
+          "examples": [
+            {
+              "chinese": "请坐在这里。",
+              "id": "open-frequency-starter-example-duduk-1-bd0707b61d",
+              "malay": "Sila duduk di sini.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#duduk"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-duduk-d793ba4774",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "DOO-dook",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/duduk#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "du",
+            "duk"
+          ],
+          "term": "duduk"
+        },
+        {
+          "chineseMeaning": "看；看见",
+          "examples": [
+            {
+              "chinese": "我看到公共汽车。",
+              "id": "open-frequency-starter-example-lihat-1-195643000c",
+              "malay": "Saya lihat bas.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#lihat"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-lihat-b1e5f204a2",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "LEE-hat",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/lihat#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "li",
+            "hat"
+          ],
+          "term": "lihat"
+        },
+        {
+          "chineseMeaning": "听；听见",
+          "examples": [
+            {
+              "chinese": "你听见我吗？",
+              "id": "open-frequency-starter-example-dengar-1-9687335fc5",
+              "malay": "Awak dengar saya?",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#dengar"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-dengar-a2999f5ee5",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "DUH-ngar",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/dengar#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "de",
+            "ngar"
+          ],
+          "term": "dengar"
+        },
+        {
+          "chineseMeaning": "说；讲话",
+          "examples": [
+            {
+              "chinese": "我说马来语。",
+              "id": "open-frequency-starter-example-cakap-1-bf9a72ec0b",
+              "malay": "Saya cakap bahasa Melayu.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#cakap"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-cakap-b1ec38878c",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "CHAH-kap",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/cakap#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ca",
+            "kap"
+          ],
+          "term": "cakap"
+        },
+        {
+          "chineseMeaning": "读；阅读",
+          "examples": [
+            {
+              "chinese": "他/她读书。",
+              "id": "open-frequency-starter-example-baca-1-54df92b3e7",
+              "malay": "Dia baca buku.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#baca"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-baca-b081aeadec",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "BAH-chah",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/baca#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ba",
+            "ca"
+          ],
+          "term": "baca"
+        },
+        {
+          "chineseMeaning": "写",
+          "examples": [
+            {
+              "chinese": "我写我的名字。",
+              "id": "open-frequency-starter-example-tulis-1-982bc2d178",
+              "malay": "Saya tulis nama saya.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#tulis"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-tulis-fa9036cb36",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "TOO-lis",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/tulis#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "tu",
+            "lis"
+          ],
+          "term": "tulis"
+        },
+        {
+          "chineseMeaning": "买",
+          "examples": [
+            {
+              "chinese": "我们买书。",
+              "id": "open-frequency-starter-example-beli-1-65d984e830",
+              "malay": "Kami beli buku.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#beli"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-beli-a5f7801d0d",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "BUH-lee",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/beli#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "be",
+            "li"
+          ],
+          "term": "beli"
+        },
+        {
+          "chineseMeaning": "卖",
+          "examples": [
+            {
+              "chinese": "他/她卖米饭。",
+              "id": "open-frequency-starter-example-jual-1-5623d4d036",
+              "malay": "Dia jual nasi.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#jual"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-jual-933ff04cb7",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "JOO-al",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/jual#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ju",
+            "al"
+          ],
+          "term": "jual"
+        },
+        {
+          "chineseMeaning": "房子；家",
+          "examples": [
+            {
+              "chinese": "这所房子很大。",
+              "id": "open-frequency-starter-example-rumah-1-b6dd0134b9",
+              "malay": "Rumah ini besar.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#rumah"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-rumah-80e7604d3e",
+          "languageCode": "ms",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "ROO-mah",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/rumah#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ru",
+            "mah"
+          ],
+          "term": "rumah"
+        },
+        {
+          "chineseMeaning": "学校",
+          "examples": [
+            {
+              "chinese": "那所学校很近。",
+              "id": "open-frequency-starter-example-sekolah-1-9da3fc0ad8",
+              "malay": "Sekolah itu dekat.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#sekolah"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-sekolah-f6751a3908",
+          "languageCode": "ms",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "suh-KOH-lah",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/sekolah#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "se",
+            "ko",
+            "lah"
+          ],
+          "term": "sekolah"
+        },
+        {
+          "chineseMeaning": "市场",
+          "examples": [
+            {
+              "chinese": "这个市场很小。",
+              "id": "open-frequency-starter-example-pasar-1-7a754ae940",
+              "malay": "Pasar ini kecil.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#pasar"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-pasar-7c30a24516",
+          "languageCode": "ms",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "PAH-sar",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/pasar#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "pa",
+            "sar"
+          ],
+          "term": "pasar"
+        },
+        {
+          "chineseMeaning": "工作",
+          "examples": [
+            {
+              "chinese": "我的工作很多。",
+              "id": "open-frequency-starter-example-kerja-1-e54d766056",
+              "malay": "Kerja saya banyak.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#kerja"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-kerja-fad8cac854",
+          "languageCode": "ms",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "KUHR-jah",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/kerja#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ker",
+            "ja"
+          ],
+          "term": "kerja"
+        },
+        {
+          "chineseMeaning": "书",
+          "examples": [
+            {
+              "chinese": "那本书是新的。",
+              "id": "open-frequency-starter-example-buku-1-33af4db8dc",
+              "malay": "Buku itu baru.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#buku"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-buku-05ed9135ba",
+          "languageCode": "ms",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "BOO-koo",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/buku#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "bu",
+            "ku"
+          ],
+          "term": "buku"
+        },
+        {
+          "chineseMeaning": "汽车；车",
+          "examples": [
+            {
+              "chinese": "我的车在路上。",
+              "id": "open-frequency-starter-example-kereta-1-868444357c",
+              "malay": "Kereta saya di jalan.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#kereta"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-kereta-8895098735",
+          "languageCode": "ms",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "kuh-REH-tah",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/kereta#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ke",
+            "re",
+            "ta"
+          ],
+          "term": "kereta"
+        },
+        {
+          "chineseMeaning": "公共汽车",
+          "examples": [
+            {
+              "chinese": "公共汽车今天早上来了。",
+              "id": "open-frequency-starter-example-bas-1-0784ae06db",
+              "malay": "Bas datang pagi ini.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#bas"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-bas-cc9fa8a98c",
+          "languageCode": "ms",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "bahs",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/bas#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "bas"
+          ],
+          "term": "bas"
+        },
+        {
+          "chineseMeaning": "路；道路",
+          "examples": [
+            {
+              "chinese": "这条路很长。",
+              "id": "open-frequency-starter-example-jalan-1-67c56166aa",
+              "malay": "Jalan ini panjang.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#jalan"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-jalan-d3d66e71c0",
+          "languageCode": "ms",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "JAH-lan",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/jalan#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ja",
+            "lan"
+          ],
+          "term": "jalan"
+        },
+        {
+          "chineseMeaning": "早晨；上午",
+          "examples": [
+            {
+              "chinese": "早上好。",
+              "id": "open-frequency-starter-example-pagi-1-6d5624220f",
+              "malay": "Selamat pagi.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#pagi"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-pagi-1519aa09bf",
+          "languageCode": "ms",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "PAH-gee",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/pagi#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "pa",
+            "gi"
+          ],
+          "term": "pagi"
+        },
+        {
+          "chineseMeaning": "天；日子",
+          "examples": [
+            {
+              "chinese": "今天我学习。",
+              "id": "open-frequency-starter-example-hari-1-cc2e04bc15",
+              "malay": "Hari ini saya belajar.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#hari"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-hari-f7b3781c5e",
+          "languageCode": "ms",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "HAH-ree",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/hari#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ha",
+            "ri"
+          ],
+          "term": "hari"
+        },
+        {
+          "chineseMeaning": "名字；名称",
+          "examples": [
+            {
+              "chinese": "我的名字是阿里。",
+              "id": "open-frequency-starter-example-nama-1-7ecd24bf0b",
+              "malay": "Nama saya Ali.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#nama"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-nama-6232302277",
+          "languageCode": "ms",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "NAH-mah",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/nama#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "na",
+            "ma"
+          ],
+          "term": "nama"
+        },
+        {
+          "chineseMeaning": "语言",
+          "examples": [
+            {
+              "chinese": "我学习马来语。",
+              "id": "open-frequency-starter-example-bahasa-1-190479ae66",
+              "malay": "Saya belajar bahasa Melayu.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate authored beginner examples",
+                  "field": "example",
+                  "license": "CC BY 4.0",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate beginner example sentences",
+                  "sourceUrl": "local-file://content/raw/sample_sentences.tsv#bahasa"
+                }
+              ]
+            }
+          ],
+          "id": "open-frequency-starter-word-bahasa-1c259eb4c7",
+          "languageCode": "ms",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "bah-HAH-sah",
+          "sourceRefs": [
+            {
+              "attribution": "Wiktionary contributors",
+              "field": "term",
+              "license": "CC BY-SA 4.0; GFDL",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "Wiktionary",
+              "sourceUrl": "https://en.wiktionary.org/wiki/bahasa#Malay"
+            },
+            {
+              "attribution": "MalayMate curated beginner vocabulary list",
+              "field": "frequency",
+              "license": "CC BY 4.0",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate curated beginner frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ba",
+            "ha",
+            "sa"
+          ],
+          "term": "bahasa"
         }
       ]
     }

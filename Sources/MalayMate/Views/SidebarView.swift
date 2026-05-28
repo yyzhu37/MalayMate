@@ -9,26 +9,30 @@ struct SidebarView: View {
     @Query private var cards: [CardRecord]
     @Query private var words: [WordRecord]
     @Query private var reviewStates: [ReviewStateRecord]
+    @AppStorage("dailyNewWordLimit") private var dailyLimit = 10
     @State private var now = Date.now
 
-    private var dueCount: Int {
-        let wordsByID = Dictionary(uniqueKeysWithValues: words.map { ($0.id, $0) })
-        let dueCardIDs = Set(reviewStates.filter { $0.dueAt <= now }.map(\.cardID))
+    private var todaySummary: TodaySummary {
+        TodaySummary.make(
+            words: words,
+            cards: cards,
+            reviewStates: reviewStates,
+            dailyLimit: dailyLimit,
+            now: now
+        )
+    }
 
-        return cards.filter { card in
-            guard
-                dueCardIDs.contains(card.id),
-                let word = wordsByID[card.wordID]
-            else {
-                return false
-            }
-            return LearningStatus(word: word) != .new
-        }.count
+    private var dueCount: Int {
+        todaySummary.dueReviewCount
     }
 
     var body: some View {
         List(selection: $selection) {
             Section("Today") {
+                NavigationLink(value: ContentView.Selection.today) {
+                    Label("Today", systemImage: "calendar")
+                }
+
                 NavigationLink(value: ContentView.Selection.review) {
                     Label {
                         HStack {

@@ -36,13 +36,15 @@ final class SeedImporterTests: XCTestCase {
         let summary = try SeedImporter().importBundledSeed(into: context, now: now)
 
         XCTAssertEqual(summary.decksInserted, 3)
-        XCTAssertEqual(summary.wordsInserted, 9)
-        XCTAssertEqual(summary.cardsInserted, 18)
+        XCTAssertEqual(summary.wordsInserted, 46)
+        XCTAssertEqual(summary.cardsInserted, 92)
         XCTAssertEqual(try context.fetch(FetchDescriptor<DeckRecord>()).count, 3)
-        XCTAssertEqual(try context.fetch(FetchDescriptor<WordRecord>()).count, 9)
-        XCTAssertEqual(try context.fetch(FetchDescriptor<CardRecord>()).count, 18)
-        XCTAssertEqual(try context.fetch(FetchDescriptor<ReviewStateRecord>()).count, 18)
-        XCTAssertTrue(try context.fetch(FetchDescriptor<WordRecord>()).allSatisfy { LearningStatus(word: $0) == .new })
+        let importedWords = try context.fetch(FetchDescriptor<WordRecord>())
+        XCTAssertEqual(importedWords.count, 46)
+        XCTAssertEqual(Set(importedWords.map { $0.term.lowercased() }).count, importedWords.count)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<CardRecord>()).count, 92)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<ReviewStateRecord>()).count, 92)
+        XCTAssertTrue(importedWords.allSatisfy { LearningStatus(word: $0) == .new })
     }
 
     func testSecondImportDoesNotDuplicateStarterDecks() throws {

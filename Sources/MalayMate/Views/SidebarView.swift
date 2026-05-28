@@ -5,7 +5,6 @@ import SwiftUI
 struct SidebarView: View {
     @Binding var selection: ContentView.Selection
 
-    @Query(sort: \DeckRecord.name) private var decks: [DeckRecord]
     @Query private var cards: [CardRecord]
     @Query private var words: [WordRecord]
     @Query private var reviewStates: [ReviewStateRecord]
@@ -60,16 +59,6 @@ struct SidebarView: View {
 
                 NavigationLink(value: ContentView.Selection.settings) {
                     Label("Settings", systemImage: "gearshape")
-                }
-            }
-
-            if !decks.isEmpty {
-                Section("Decks") {
-                    ForEach(decks) { deck in
-                        NavigationLink(value: ContentView.Selection.library(deckID: deck.id)) {
-                            Label(deck.name, systemImage: deck.isStarter ? "sparkles" : "person.crop.circle")
-                        }
-                    }
                 }
             }
         }

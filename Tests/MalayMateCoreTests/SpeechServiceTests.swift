@@ -1,7 +1,6 @@
 import XCTest
 @testable import MalayMateCore
 
-@MainActor
 final class SpeechServiceTests: XCTestCase {
     func testMalayVoiceSelectionPrefersMsMY() {
         let voices = [
@@ -23,5 +22,39 @@ final class SpeechServiceTests: XCTestCase {
         let voice = SpeechService.chooseMalayVoice(from: voices)
 
         XCTAssertEqual(voice?.identifier, "ms")
+    }
+
+    func testMalayVoiceSelectionPrefersHyphenatedMsMY() {
+        let voices = [
+            SpeechVoice(identifier: "ms", name: "Malay", language: "ms"),
+            SpeechVoice(identifier: "ms-MY", name: "Amira", language: "ms-MY")
+        ]
+
+        let voice = SpeechService.chooseMalayVoice(from: voices)
+
+        XCTAssertEqual(voice?.identifier, "ms-MY")
+    }
+
+    func testMalayVoiceSelectionFallsBackToMalayName() {
+        let voices = [
+            SpeechVoice(identifier: "id", name: "Damayanti", language: "id_ID"),
+            SpeechVoice(identifier: "melayu", name: "Bahasa Melayu", language: "und"),
+            SpeechVoice(identifier: "malay", name: "Malay", language: "und")
+        ]
+
+        let voice = SpeechService.chooseMalayVoice(from: voices)
+
+        XCTAssertEqual(voice?.identifier, "melayu")
+    }
+
+    func testMalayVoiceSelectionReturnsNilWhenNoMalayMatchExists() {
+        let voices = [
+            SpeechVoice(identifier: "en", name: "Samantha", language: "en_US"),
+            SpeechVoice(identifier: "id", name: "Damayanti", language: "id_ID")
+        ]
+
+        let voice = SpeechService.chooseMalayVoice(from: voices)
+
+        XCTAssertNil(voice)
     }
 }

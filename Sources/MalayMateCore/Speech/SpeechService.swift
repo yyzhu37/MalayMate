@@ -26,20 +26,27 @@ public final class SpeechService {
         return Self.chooseMalayVoice(from: voices)
     }
 
-    public func speak(_ text: String) {
-        let utterance = AVSpeechUtterance(string: text)
-
-        if let identifier = availableMalayVoice?.identifier {
-            utterance.voice = AVSpeechSynthesisVoice(identifier: identifier)
-        } else {
-            utterance.voice = AVSpeechSynthesisVoice(language: "ms-MY")
-        }
-
-        utterance.rate = AVSpeechUtteranceDefaultSpeechRate * 0.9
-        synthesizer.speak(utterance)
+    public var canSpeakMalay: Bool {
+        availableMalayVoice != nil
     }
 
-    public static func chooseMalayVoice(from voices: [SpeechVoice]) -> SpeechVoice? {
+    @discardableResult
+    public func speak(_ text: String) -> Bool {
+        guard
+            let identifier = availableMalayVoice?.identifier,
+            let voice = AVSpeechSynthesisVoice(identifier: identifier)
+        else {
+            return false
+        }
+
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = voice
+        utterance.rate = AVSpeechUtteranceDefaultSpeechRate * 0.9
+        synthesizer.speak(utterance)
+        return true
+    }
+
+    nonisolated public static func chooseMalayVoice(from voices: [SpeechVoice]) -> SpeechVoice? {
         if let exactMalaysiaMalay = voices.first(where: { $0.language.lowercased().replacingOccurrences(of: "-", with: "_") == "ms_my" }) {
             return exactMalaysiaMalay
         }

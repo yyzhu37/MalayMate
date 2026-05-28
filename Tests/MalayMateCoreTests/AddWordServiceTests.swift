@@ -14,9 +14,21 @@ final class AddWordServiceTests: XCTestCase {
         let word = try XCTUnwrap(try context.fetch(FetchDescriptor<WordRecord>()).first { $0.id == wordID })
         let cards = try context.fetch(FetchDescriptor<CardRecord>()).filter { $0.wordID == wordID }
         XCTAssertEqual(word.term, "belajar")
+        XCTAssertEqual(word.chineseMeaning, "学习")
+        XCTAssertEqual(word.partOfSpeech, "unknown")
+        XCTAssertEqual(word.pronunciationNotes, "belajar")
         XCTAssertEqual(word.reviewStatus, "needsEnrichment")
         XCTAssertEqual(cards.count, 2)
-        XCTAssertTrue(cards.contains { $0.directionRaw == CardDirection.malayToChinese.rawValue })
-        XCTAssertTrue(cards.contains { $0.directionRaw == CardDirection.chineseToMalay.rawValue })
+
+        let malayToChinese = try XCTUnwrap(cards.first { $0.directionRaw == CardDirection.malayToChinese.rawValue })
+        XCTAssertEqual(malayToChinese.prompt, "belajar")
+        XCTAssertEqual(malayToChinese.answer, "学习")
+
+        let chineseToMalay = try XCTUnwrap(cards.first { $0.directionRaw == CardDirection.chineseToMalay.rawValue })
+        XCTAssertEqual(chineseToMalay.prompt, "学习")
+        XCTAssertEqual(chineseToMalay.answer, "belajar")
+
+        let examples = try JSONDecoder.seedDecoder.decode([SeedExample].self, from: Data(word.examplesJSON.utf8))
+        XCTAssertTrue(examples.contains { $0.malay.contains("belajar") })
     }
 }

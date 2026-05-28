@@ -11,7 +11,7 @@
           "examples": [
             {
               "chinese": "我吃米饭。",
-              "id": "example-makan-1",
+              "id": "open-frequency-starter-example-makan-1-1",
               "malay": "Saya makan nasi.",
               "sourceRefs": [
                 {
@@ -26,7 +26,7 @@
               ]
             }
           ],
-          "id": "word-makan",
+          "id": "open-frequency-starter-word-makan-1",
           "languageCode": "ms",
           "partOfSpeech": "verb",
           "pronunciationNotes": "",
@@ -61,7 +61,7 @@
           "examples": [
             {
               "chinese": "我喝水。",
-              "id": "example-minum-1",
+              "id": "open-frequency-starter-example-minum-2-1",
               "malay": "Saya minum air.",
               "sourceRefs": [
                 {
@@ -76,7 +76,7 @@
               ]
             }
           ],
-          "id": "word-minum",
+          "id": "open-frequency-starter-word-minum-2",
           "languageCode": "ms",
           "partOfSpeech": "verb",
           "pronunciationNotes": "",
@@ -111,7 +111,7 @@
           "examples": [
             {
               "chinese": "我学习马来语。",
-              "id": "example-belajar-1",
+              "id": "open-frequency-starter-example-belajar-3-1",
               "malay": "Saya belajar bahasa Melayu.",
               "sourceRefs": [
                 {
@@ -126,7 +126,7 @@
               ]
             }
           ],
-          "id": "word-belajar",
+          "id": "open-frequency-starter-word-belajar-3",
           "languageCode": "ms",
           "partOfSpeech": "verb",
           "pronunciationNotes": "",

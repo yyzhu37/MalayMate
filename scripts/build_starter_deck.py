@@ -50,12 +50,14 @@ def read_frequency(path):
 def read_dictionary(path):
     entries = {}
     with Path(path).open("r", encoding="utf-8") as handle:
-        for line in handle:
+        for line_number, line in enumerate(handle, start=1):
             line = line.strip()
             if not line:
                 continue
             payload = json.loads(line)
-            term = payload["term"].strip()
+            term = (payload.get("term") or payload.get("word") or "").strip()
+            if not term:
+                raise ValueError(f"Dictionary row {line_number} must include term or word")
             syllables = payload.get("syllables", [])
             if isinstance(syllables, str):
                 syllables = [part.strip() for part in syllables.split(",") if part.strip()]
@@ -110,12 +112,12 @@ def fallback_example(term):
     }
 
 
-def build_examples(term, rows):
+def build_examples(term, rows, word_index):
     examples = []
-    for index, row in enumerate((rows or [fallback_example(term)])[:2], start=1):
+    for example_index, row in enumerate((rows or [fallback_example(term)])[:2], start=1):
         examples.append(
             {
-                "id": f"example-{slug(term)}-{index}",
+                "id": f"open-frequency-starter-example-{slug(term)}-{word_index}-{example_index}",
                 "malay": row["malay"],
                 "chinese": row.get("chinese", ""),
                 "sourceRefs": [
@@ -133,27 +135,54 @@ def build_examples(term, rows):
     return examples
 
 
+def validate_unique_ids(payload):
+    seen = set()
+    for deck in payload.get("decks", []):
+        deck_id = deck.get("id")
+        if deck_id in seen:
+            raise ValueError(f"Duplicate generated id: {deck_id}")
+        seen.add(deck_id)
+        for word in deck.get("words", []):
+            word_id = word.get("id")
+            if word_id in seen:
+                raise ValueError(f"Duplicate generated id: {word_id}")
+            seen.add(word_id)
+            for example in word.get("examples", []):
+                example_id = example.get("id")
+                if example_id in seen:
+                    raise ValueError(f"Duplicate generated id: {example_id}")
+                seen.add(example_id)
+
+
 def build_deck(frequency, dictionary, sentences, limit=None):
+    if limit is not None and limit <= 0:
+        raise ValueError("limit must be a positive integer")
+
     frequency_rows = read_frequency(frequency)
     dictionary_entries = read_dictionary(dictionary)
     sentence_rows = read_sentences(sentences)
-    selected_rows = frequency_rows[:limit] if limit is not None else frequency_rows
+    sorted_rows = sorted(frequency_rows, key=lambda row: row["count"], reverse=True)
+    selected_rows = sorted_rows[:limit] if limit is not None else sorted_rows
 
     words = []
-    for row in selected_rows:
+    for word_index, row in enumerate(selected_rows, start=1):
         term = row["term"]
-        entry = dictionary_entries.get(term, {})
+        entry = dictionary_entries.get(term)
+        if entry is None:
+            raise ValueError(f"Missing dictionary row for term '{term}'")
+        if not entry.get("chineseMeaning"):
+            raise ValueError(f"Missing dictionary meaning for term '{term}'")
         source_url = entry.get("sourceUrl", "")
         words.append(
             {
-                "id": f"word-{slug(term)}",
+                "id": f"open-frequency-starter-word-{slug(term)}-{word_index}",
                 "term": term,
                 "languageCode": "ms",
                 "chineseMeaning": entry.get("chineseMeaning", ""),
                 "partOfSpeech": entry.get("partOfSpeech", ""),
                 "pronunciationNotes": entry.get("pronunciationNotes", ""),
                 "syllables": entry.get("syllables", []),
-                "examples": build_examples(term, sentence_rows.get(term, [])),
+                "examples": build_examples(term, sentence_rows.get(term, []), word_index),
                 "sourceRefs": [
                     source(
                         "term",
@@ -175,7 +204,7 @@ def build_deck(frequency, dictionary, sentences, limit=None):
             }
         )
 
-    return {
+    payload = {
         "version": 1,
         "generatedAt": GENERATED_AT,
         "decks": [
@@ -188,6 +217,8 @@ def build_deck(frequency, dictionary, sentences, limit=None):
             }
         ],
     }
+    validate_unique_ids(payload)
+    return payload
 
 
 def main(argv=None):

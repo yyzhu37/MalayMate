@@ -17,6 +17,7 @@ public final class AddWordService {
 
     public func addWord(term: String, userMeaning: String, note: String?, now: Date = .now) async throws -> UUID {
         let trimmedTerm = term.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedMeaning = userMeaning.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmedTerm.isEmpty else {
             throw AddWordError.emptyTerm
         }
@@ -25,14 +26,14 @@ public final class AddWordService {
         let reviewStatus: String
         do {
             if let aiProvider {
-                enrichment = try await aiProvider.enrich(term: trimmedTerm, userMeaning: userMeaning, note: note)
+                enrichment = try await aiProvider.enrich(term: trimmedTerm, userMeaning: trimmedMeaning, note: note)
                 reviewStatus = "aiGenerated"
             } else {
-                enrichment = templateGenerator.enrichment(term: trimmedTerm, userMeaning: userMeaning, note: note, now: now)
+                enrichment = templateGenerator.enrichment(term: trimmedTerm, userMeaning: trimmedMeaning, note: note, now: now)
                 reviewStatus = "needsEnrichment"
             }
         } catch {
-            enrichment = templateGenerator.enrichment(term: trimmedTerm, userMeaning: userMeaning, note: note, now: now)
+            enrichment = templateGenerator.enrichment(term: trimmedTerm, userMeaning: trimmedMeaning, note: note, now: now)
             reviewStatus = "needsEnrichment"
         }
 

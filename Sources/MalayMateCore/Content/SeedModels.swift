@@ -1,12 +1,12 @@
 import Foundation
 
-public struct SeedDeckCollection: Codable, Equatable {
+public struct SeedDeckCollection: Codable, Equatable, Sendable {
     public var version: Int
     public var generatedAt: Date
     public var decks: [SeedDeck]
 }
 
-public struct SeedDeck: Codable, Equatable, Identifiable {
+public struct SeedDeck: Codable, Equatable, Identifiable, Sendable {
     public var id: String
     public var name: String
     public var description: String
@@ -14,7 +14,7 @@ public struct SeedDeck: Codable, Equatable, Identifiable {
     public var words: [SeedWord]
 }
 
-public struct SeedWord: Codable, Equatable, Identifiable {
+public struct SeedWord: Codable, Equatable, Identifiable, Sendable {
     public var id: String
     public var term: String
     public var languageCode: String
@@ -26,14 +26,14 @@ public struct SeedWord: Codable, Equatable, Identifiable {
     public var sourceRefs: [SeedSourceRef]
 }
 
-public struct SeedExample: Codable, Equatable, Identifiable {
+public struct SeedExample: Codable, Equatable, Identifiable, Sendable {
     public var id: String
     public var malay: String
     public var chinese: String
     public var sourceRefs: [SeedSourceRef]
 }
 
-public struct SeedSourceRef: Codable, Equatable {
+public struct SeedSourceRef: Codable, Equatable, Sendable {
     public var field: String
     public var sourceName: String
     public var sourceUrl: String

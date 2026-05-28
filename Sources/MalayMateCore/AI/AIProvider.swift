@@ -1,6 +1,6 @@
 import Foundation
 
-public struct AIEnrichment: Codable, Equatable, @unchecked Sendable {
+public struct AIEnrichment: Codable, Equatable, Sendable {
     public var chineseMeaning: String
     public var partOfSpeech: String
     public var pronunciationNotes: String

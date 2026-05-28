@@ -4,6 +4,7 @@ public struct TemplateGenerator: Sendable {
     public init() {}
 
     public func enrichment(term: String, userMeaning: String, note: String?, now: Date) -> AIEnrichment {
+        let trimmedMeaning = userMeaning.trimmingCharacters(in: .whitespacesAndNewlines)
         let syllables = term.split(separator: "-").map(String.init)
         let inferredSyllables = syllables.count > 1 ? syllables : [term]
         let source = SeedSourceRef(
@@ -22,7 +23,7 @@ public struct TemplateGenerator: Sendable {
             sourceRefs: [source]
         )
         return AIEnrichment(
-            chineseMeaning: userMeaning.isEmpty ? term : userMeaning,
+            chineseMeaning: trimmedMeaning.isEmpty ? term : trimmedMeaning,
             partOfSpeech: "unknown",
             pronunciationNotes: inferredSyllables.joined(separator: "-"),
             syllables: inferredSyllables,

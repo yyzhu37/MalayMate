@@ -150,12 +150,15 @@ struct LibraryView: View {
 private struct LibraryWordRow: View {
     let word: WordRecord
 
+    @State private var isExpanded = false
+    @State private var speechService = SpeechService()
+
     private var examples: [SeedExample] {
         VocabularyLibrary.examples(for: word)
     }
 
     var body: some View {
-        DisclosureGroup {
+        DisclosureGroup(isExpanded: $isExpanded) {
             VStack(alignment: .leading, spacing: 8) {
                 if examples.isEmpty {
                     Text("No examples")
@@ -201,6 +204,12 @@ private struct LibraryWordRow: View {
             .padding(.vertical, 10)
         }
         .padding(.horizontal, 14)
+        .onChange(of: isExpanded) { _, expanded in
+            guard expanded, speechService.canSpeakMalay else {
+                return
+            }
+            _ = speechService.speak(word.term)
+        }
     }
 }
 

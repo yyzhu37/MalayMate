@@ -32,9 +32,11 @@ mkdir -p "$MACOS_DIR" "$RESOURCES_DIR"
 
 cp "$RELEASE_DIR/MalayMate" "$MACOS_DIR/MalayMate"
 cp "$ROOT/packaging/Info.plist" "$CONTENTS_DIR/Info.plist"
+cp "$ROOT/packaging/AppIcon.icns" "$RESOURCES_DIR/AppIcon.icns"
 cp -R "$RESOURCE_BUNDLE" "$RESOURCES_DIR/MalayMate_MalayMateCore.bundle"
 chmod +x "$MACOS_DIR/MalayMate"
 
+test -f "$RESOURCES_DIR/AppIcon.icns"
 test -f "$RESOURCES_DIR/MalayMate_MalayMateCore.bundle/starter_deck.json"
 test -f "$RESOURCES_DIR/MalayMate_MalayMateCore.bundle/open_frequency_starter_deck.json"
 

@@ -15,6 +15,7 @@ struct LearnView: View {
     @State private var skippedWordIDs: Set<UUID> = []
     @State private var statusMessage: String?
     @State private var speechService = SpeechService()
+    @State private var lastAutoSpokenWordID: UUID?
 
     private var effectiveDeckID: String? {
         selectedDeckID == Self.allDecksID ? nil : selectedDeckID
@@ -58,7 +59,13 @@ struct LearnView: View {
         .padding(32)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .navigationTitle("Learn")
-        .onAppear(perform: clampDailyLimit)
+        .onAppear {
+            clampDailyLimit()
+            autoPlayCurrentWordIfNeeded()
+        }
+        .onChange(of: currentWord?.id) { _, _ in
+            autoPlayCurrentWordIfNeeded()
+        }
         .onChange(of: selectedDeckID) { _, _ in
             skippedWordIDs.removeAll()
             statusMessage = nil
@@ -266,5 +273,17 @@ struct LearnView: View {
 
     private func clampDailyLimit() {
         dailyLimit = min(max(dailyLimit, 0), 100)
+    }
+
+    private func autoPlayCurrentWordIfNeeded() {
+        guard let currentWord, lastAutoSpokenWordID != currentWord.id else {
+            return
+        }
+
+        lastAutoSpokenWordID = currentWord.id
+        guard speechService.canSpeakMalay else {
+            return
+        }
+        _ = speechService.speak(currentWord.term)
     }
 }

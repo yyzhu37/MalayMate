@@ -1,0 +1,165 @@
+{
+  "decks": [
+    {
+      "description": "Locally built Malay starter deck from open-access source files.",
+      "id": "starter-local-open-access",
+      "isStarter": true,
+      "name": "Starter Local Open-Access",
+      "words": [
+        {
+          "chineseMeaning": "吃；进食",
+          "examples": [
+            {
+              "chinese": "我吃米饭。",
+              "id": "example-makan-1",
+              "malay": "Saya makan nasi.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate sample raw sentences",
+                  "field": "example",
+                  "license": "Open access sample",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate sample sentences",
+                  "sourceUrl": "https://example.org/open-sentences/makan-1"
+                }
+              ]
+            }
+          ],
+          "id": "word-makan",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "",
+          "sourceRefs": [
+            {
+              "attribution": "MalayMate sample raw dictionary",
+              "field": "term",
+              "license": "Open access sample",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate sample dictionary",
+              "sourceUrl": "https://example.org/open-dictionary/makan"
+            },
+            {
+              "attribution": "MalayMate local content builder",
+              "field": "frequency",
+              "license": "Open access; verify source-specific terms before redistribution",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate sample frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "ma",
+            "kan"
+          ],
+          "term": "makan"
+        },
+        {
+          "chineseMeaning": "喝；饮用",
+          "examples": [
+            {
+              "chinese": "我喝水。",
+              "id": "example-minum-1",
+              "malay": "Saya minum air.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate sample raw sentences",
+                  "field": "example",
+                  "license": "Open access sample",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate sample sentences",
+                  "sourceUrl": "https://example.org/open-sentences/minum-1"
+                }
+              ]
+            }
+          ],
+          "id": "word-minum",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "",
+          "sourceRefs": [
+            {
+              "attribution": "MalayMate sample raw dictionary",
+              "field": "term",
+              "license": "Open access sample",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate sample dictionary",
+              "sourceUrl": "https://example.org/open-dictionary/minum"
+            },
+            {
+              "attribution": "MalayMate local content builder",
+              "field": "frequency",
+              "license": "Open access; verify source-specific terms before redistribution",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate sample frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "mi",
+            "num"
+          ],
+          "term": "minum"
+        },
+        {
+          "chineseMeaning": "学习",
+          "examples": [
+            {
+              "chinese": "我学习马来语。",
+              "id": "example-belajar-1",
+              "malay": "Saya belajar bahasa Melayu.",
+              "sourceRefs": [
+                {
+                  "attribution": "MalayMate sample raw sentences",
+                  "field": "example",
+                  "license": "Open access sample",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "needs-review",
+                  "sourceName": "MalayMate sample sentences",
+                  "sourceUrl": "https://example.org/open-sentences/belajar-1"
+                }
+              ]
+            }
+          ],
+          "id": "word-belajar",
+          "languageCode": "ms",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "",
+          "sourceRefs": [
+            {
+              "attribution": "MalayMate sample raw dictionary",
+              "field": "term",
+              "license": "Open access sample",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate sample dictionary",
+              "sourceUrl": "https://example.org/open-dictionary/belajar"
+            },
+            {
+              "attribution": "MalayMate local content builder",
+              "field": "frequency",
+              "license": "Open access; verify source-specific terms before redistribution",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "needs-review",
+              "sourceName": "MalayMate sample frequency list",
+              "sourceUrl": "local-file://content/raw/sample_frequency.tsv"
+            }
+          ],
+          "syllables": [
+            "be",
+            "la",
+            "jar"
+          ],
+          "term": "belajar"
+        }
+      ]
+    }
+  ],
+  "generatedAt": "2026-05-28T00:00:00Z",
+  "version": 1
+}

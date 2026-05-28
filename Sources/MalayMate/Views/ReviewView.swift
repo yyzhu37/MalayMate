@@ -43,6 +43,7 @@ struct ReviewView: View {
         .navigationTitle("Review")
         .task {
             refresh()
+            await refreshPeriodically()
         }
         .toolbar {
             Button {
@@ -57,7 +58,7 @@ struct ReviewView: View {
         VStack(alignment: .leading, spacing: 6) {
             Text("Review")
                 .font(.largeTitle.weight(.semibold))
-            Text("\(dueItems.count) cards due")
+            Text("\(dueItems.count) loaded due cards")
                 .foregroundStyle(.secondary)
         }
     }
@@ -180,13 +181,30 @@ struct ReviewView: View {
         do {
             try ReviewSession(context: modelContext).apply(rating: rating, to: currentItem.card.id, now: .now)
             dueItems.remove(at: currentIndex)
-            if currentIndex >= dueItems.count {
+            if dueItems.isEmpty {
+                refresh()
+            } else if currentIndex >= dueItems.count {
                 currentIndex = max(dueItems.count - 1, 0)
+                isAnswerRevealed = false
+                statusMessage = nil
+            } else {
+                isAnswerRevealed = false
+                statusMessage = nil
             }
-            isAnswerRevealed = false
-            statusMessage = dueItems.isEmpty ? "All caught up." : nil
         } catch {
             statusMessage = "Could not save review: \(error.localizedDescription)"
+        }
+    }
+
+    private func refreshPeriodically() async {
+        while !Task.isCancelled {
+            try? await Task.sleep(for: .seconds(60))
+            guard !Task.isCancelled else {
+                return
+            }
+            if currentItem == nil {
+                refresh()
+            }
         }
     }
 

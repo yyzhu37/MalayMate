@@ -7,9 +7,9 @@ struct SidebarView: View {
 
     @Query(sort: \DeckRecord.name) private var decks: [DeckRecord]
     @Query private var reviewStates: [ReviewStateRecord]
+    @State private var now = Date.now
 
     private var dueCount: Int {
-        let now = Date.now
         return reviewStates.filter { $0.dueAt <= now }.count
     }
 
@@ -47,5 +47,18 @@ struct SidebarView: View {
             }
         }
         .navigationTitle("MalayMate")
+        .task {
+            await updateNowPeriodically()
+        }
+    }
+
+    private func updateNowPeriodically() async {
+        while !Task.isCancelled {
+            try? await Task.sleep(for: .seconds(60))
+            guard !Task.isCancelled else {
+                return
+            }
+            now = .now
+        }
     }
 }

@@ -16,9 +16,12 @@ struct AddWordView: View {
         Form {
             Section("New Word") {
                 TextField("Malay word", text: $term)
+                    .disabled(isSaving)
                 TextField("中文意思", text: $chineseMeaning)
+                    .disabled(isSaving)
                 TextField("Note", text: $note, axis: .vertical)
                     .lineLimit(3...6)
+                    .disabled(isSaving)
             }
 
             Section {
@@ -41,6 +44,11 @@ struct AddWordView: View {
     }
 
     private func save() {
+        let submittedTerm = term
+        let submittedMeaning = chineseMeaning
+        let submittedNote = note
+        let trimmedSubmittedNote = submittedNote.trimmingCharacters(in: .whitespacesAndNewlines)
+
         isSaving = true
         statusMessage = nil
 
@@ -54,19 +62,32 @@ struct AddWordView: View {
                     nil
                 }
                 let service = AddWordService(context: modelContext, aiProvider: provider)
-                _ = try await service.addWord(
-                    term: term,
-                    userMeaning: chineseMeaning,
-                    note: note.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? nil : note
+                let wordID = try await service.addWord(
+                    term: submittedTerm,
+                    userMeaning: submittedMeaning,
+                    note: trimmedSubmittedNote.isEmpty ? nil : submittedNote
                 )
+                let savedWord = try modelContext.fetch(FetchDescriptor<WordRecord>())
+                    .first { $0.id == wordID }
                 term = ""
                 chineseMeaning = ""
                 note = ""
-                statusMessage = provider == nil ? "Saved with local template fallback." : "Saved with AI enrichment."
+                statusMessage = statusMessage(for: savedWord?.reviewStatus, usedProvider: provider != nil)
             } catch {
                 statusMessage = "Could not save word: \(error.localizedDescription)"
             }
             isSaving = false
+        }
+    }
+
+    private func statusMessage(for reviewStatus: String?, usedProvider: Bool) -> String {
+        switch reviewStatus {
+        case "aiGenerated":
+            return "Saved with AI enrichment."
+        case "needsEnrichment":
+            return usedProvider ? "Saved with local template fallback after AI failed." : "Saved with local template fallback."
+        default:
+            return "Saved."
         }
     }
 }

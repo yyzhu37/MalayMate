@@ -52,9 +52,13 @@ public struct OpenAIClient: AIProvider {
 
     public static func parseEnrichmentResponse(data: Data) throws -> AIEnrichment {
         let response = try JSONDecoder().decode(ResponsesEnvelope.self, from: data)
-        guard let text = response.outputText ?? response.output?.compactMap({ item in
-            item.content.compactMap { content in content.text }.joined(separator: "\n")
-        }).first(where: { !$0.isEmpty }) else {
+        let outputText = response.outputText.flatMap { $0.isEmpty ? nil : $0 }
+        let contentText = response.output?
+            .flatMap { $0.content ?? [] }
+            .compactMap { $0.text }
+            .first { !$0.isEmpty }
+
+        guard let text = outputText ?? contentText else {
             throw OpenAIClientError.missingOutputText
         }
         let payload = Data(text.utf8)
@@ -79,7 +83,31 @@ public struct OpenAIClient: AIProvider {
                             "id": ["type": "string"],
                             "malay": ["type": "string"],
                             "chinese": ["type": "string"],
-                            "sourceRefs": ["type": "array", "items": ["type": "object"]]
+                            "sourceRefs": [
+                                "type": "array",
+                                "items": [
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": [
+                                        "field": ["type": "string"],
+                                        "sourceName": ["type": "string"],
+                                        "sourceUrl": ["type": "string"],
+                                        "license": ["type": "string"],
+                                        "attribution": ["type": "string"],
+                                        "retrievedAt": ["type": "string"],
+                                        "reviewStatus": ["type": "string"]
+                                    ],
+                                    "required": [
+                                        "field",
+                                        "sourceName",
+                                        "sourceUrl",
+                                        "license",
+                                        "attribution",
+                                        "retrievedAt",
+                                        "reviewStatus"
+                                    ]
+                                ]
+                            ]
                         ],
                         "required": ["id", "malay", "chinese", "sourceRefs"]
                     ]
@@ -102,7 +130,7 @@ private struct ResponsesEnvelope: Decodable {
 }
 
 private struct ResponsesOutputItem: Decodable {
-    var content: [ResponsesContentItem]
+    var content: [ResponsesContentItem]?
 }
 
 private struct ResponsesContentItem: Decodable {

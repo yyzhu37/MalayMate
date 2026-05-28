@@ -5,15 +5,27 @@ public final class KeychainStore: SecretStore {
     public init() {}
 
     public func save(_ value: String, service: String, account: String) throws {
-        try delete(service: service, account: account)
         let data = Data(value.utf8)
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,
-            kSecAttrAccount as String: account,
+            kSecAttrAccount as String: account
+        ]
+        let attributes: [String: Any] = [
             kSecValueData as String: data
         ]
-        let status = SecItemAdd(query as CFDictionary, nil)
+
+        let updateStatus = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
+        if updateStatus == errSecSuccess {
+            return
+        }
+        guard updateStatus == errSecItemNotFound else {
+            throw KeychainError.unhandledStatus(updateStatus)
+        }
+
+        var addQuery = query
+        addQuery[kSecValueData as String] = data
+        let status = SecItemAdd(addQuery as CFDictionary, nil)
         guard status == errSecSuccess else {
             throw KeychainError.unhandledStatus(status)
         }

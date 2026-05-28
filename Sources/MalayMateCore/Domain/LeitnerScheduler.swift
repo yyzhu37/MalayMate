@@ -2,6 +2,7 @@ import Foundation
 
 public struct LeitnerScheduler: Sendable {
     public static let maximumBox = 6
+    private static let fallbackInterval: TimeInterval = 10 * 60
 
     private let intervals: [Int: TimeInterval]
 
@@ -38,7 +39,7 @@ public struct LeitnerScheduler: Sendable {
             lapses = snapshot.lapses
         }
 
-        let interval = intervals[nextBox] ?? Self.defaultIntervals[nextBox] ?? Self.defaultIntervals[1]!
+        let interval = intervals[nextBox] ?? Self.defaultIntervals[nextBox] ?? Self.fallbackInterval
         return ReviewUpdate(
             rating: rating,
             reviewedAt: now,

@@ -17,19 +17,24 @@ public struct SeedImporter {
 
     @MainActor
     public func importDecks(from data: Data, into context: ModelContext, now: Date) throws -> SeedImportSummary {
-        let starterDescriptor = FetchDescriptor<DeckRecord>(predicate: #Predicate { $0.isStarter == true })
-        let existingStarterDecks = try context.fetch(starterDescriptor)
-        guard existingStarterDecks.isEmpty else {
+        let collection = try JSONDecoder.seedDecoder.decode(SeedDeckCollection.self, from: data)
+        let incomingDeckIDs = Set(collection.decks.map(\.id))
+        let existingDecks = try context.fetch(FetchDescriptor<DeckRecord>())
+        let existingIncomingDeckIDs = Set(existingDecks.map(\.id)).intersection(incomingDeckIDs)
+        guard existingIncomingDeckIDs != incomingDeckIDs else {
             return SeedImportSummary(decksInserted: 0, wordsInserted: 0, cardsInserted: 0)
         }
 
-        let collection = try JSONDecoder.seedDecoder.decode(SeedDeckCollection.self, from: data)
         var decksInserted = 0
         var wordsInserted = 0
         var cardsInserted = 0
         let scheduler = LeitnerScheduler()
 
         for deck in collection.decks {
+            guard !existingIncomingDeckIDs.contains(deck.id) else {
+                continue
+            }
+
             var wordIDs: [String] = []
 
             for seedWord in deck.words {

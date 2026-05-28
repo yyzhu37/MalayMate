@@ -8,9 +8,11 @@ final class SeedImporterTests: XCTestCase {
         let container = try ModelContainerFactory.makeInMemory()
         let context = container.mainContext
         let data = try SeedResource.bundledStarterDeckData()
+        let now = Date(timeIntervalSince1970: 1_800_000_000)
 
-        let summary = try SeedImporter().importDecks(from: data, into: context, now: Date(timeIntervalSince1970: 1_800_000_000))
+        let summary = try SeedImporter().importDecks(from: data, into: context, now: now)
         let words = try context.fetch(FetchDescriptor<WordRecord>())
+        let reviewStates = try context.fetch(FetchDescriptor<ReviewStateRecord>())
 
         XCTAssertGreaterThanOrEqual(summary.wordsInserted, 6)
         XCTAssertEqual(words.count, summary.wordsInserted)
@@ -18,7 +20,11 @@ final class SeedImporterTests: XCTestCase {
         XCTAssertEqual(summary.cardsInserted, summary.wordsInserted * 2)
         XCTAssertEqual(try context.fetch(FetchDescriptor<DeckRecord>()).count, 2)
         XCTAssertEqual(try context.fetch(FetchDescriptor<CardRecord>()).count, summary.cardsInserted)
-        XCTAssertEqual(try context.fetch(FetchDescriptor<ReviewStateRecord>()).count, summary.cardsInserted)
+        XCTAssertEqual(reviewStates.count, summary.cardsInserted)
+        XCTAssertTrue(reviewStates.allSatisfy { $0.box == 1 })
+        XCTAssertTrue(reviewStates.allSatisfy { $0.dueAt == now })
+        XCTAssertTrue(reviewStates.allSatisfy { $0.lapses == 0 })
+        XCTAssertTrue(reviewStates.allSatisfy { $0.lastReviewedAt == nil })
     }
 
     func testSecondImportDoesNotDuplicateStarterDecks() throws {
@@ -34,5 +40,32 @@ final class SeedImporterTests: XCTestCase {
         XCTAssertEqual(second.wordsInserted, 0)
         XCTAssertEqual(second.cardsInserted, 0)
         XCTAssertEqual(try context.fetch(FetchDescriptor<DeckRecord>()).count, 2)
+    }
+
+    func testImportOnlyMissingStarterDecksWhenOneAlreadyExists() throws {
+        let container = try ModelContainerFactory.makeInMemory()
+        let context = container.mainContext
+        let data = try SeedResource.bundledStarterDeckData()
+        let collection = try JSONDecoder.seedDecoder.decode(SeedDeckCollection.self, from: data)
+        let missingDeck = try XCTUnwrap(collection.decks.first { $0.id == "starter-food" })
+        let now = Date(timeIntervalSince1970: 1_800_000_000)
+        context.insert(DeckRecord(
+            id: "starter-basics",
+            name: "Basics",
+            deckDescription: "Already imported",
+            isStarter: true,
+            wordIDsJSON: "[]",
+            createdAt: now
+        ))
+        try context.save()
+
+        let summary = try SeedImporter().importDecks(from: data, into: context, now: now)
+
+        XCTAssertEqual(summary.decksInserted, 1)
+        XCTAssertEqual(summary.wordsInserted, missingDeck.words.count)
+        XCTAssertEqual(summary.cardsInserted, missingDeck.words.count * 2)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<DeckRecord>()).count, 2)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<CardRecord>()).count, summary.cardsInserted)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<ReviewStateRecord>()).count, summary.cardsInserted)
     }
 }

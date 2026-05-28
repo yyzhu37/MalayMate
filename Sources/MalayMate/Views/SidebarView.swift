@@ -29,6 +29,10 @@ struct SidebarView: View {
                     }
                 }
 
+                NavigationLink(value: ContentView.Selection.library(deckID: nil)) {
+                    Label("Library", systemImage: "books.vertical")
+                }
+
                 NavigationLink(value: ContentView.Selection.addWord) {
                     Label("Add Word", systemImage: "plus.circle")
                 }
@@ -41,7 +45,9 @@ struct SidebarView: View {
             if !decks.isEmpty {
                 Section("Decks") {
                     ForEach(decks) { deck in
-                        Label(deck.name, systemImage: deck.isStarter ? "sparkles" : "person.crop.circle")
+                        NavigationLink(value: ContentView.Selection.library(deckID: deck.id)) {
+                            Label(deck.name, systemImage: deck.isStarter ? "sparkles" : "person.crop.circle")
+                        }
                     }
                 }
             }

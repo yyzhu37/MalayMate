@@ -27,6 +27,22 @@ final class SeedImporterTests: XCTestCase {
         XCTAssertTrue(reviewStates.allSatisfy { $0.lastReviewedAt == nil })
     }
 
+    func testImportBundledSeedImportsAuthoredAndGeneratedDecks() throws {
+        let container = try ModelContainerFactory.makeInMemory()
+        let context = container.mainContext
+        let now = Date(timeIntervalSince1970: 1_800_000_000)
+
+        let summary = try SeedImporter().importBundledSeed(into: context, now: now)
+
+        XCTAssertEqual(summary.decksInserted, 3)
+        XCTAssertEqual(summary.wordsInserted, 9)
+        XCTAssertEqual(summary.cardsInserted, 18)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<DeckRecord>()).count, 3)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<WordRecord>()).count, 9)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<CardRecord>()).count, 18)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<ReviewStateRecord>()).count, 18)
+    }
+
     func testSecondImportDoesNotDuplicateStarterDecks() throws {
         let container = try ModelContainerFactory.makeInMemory()
         let context = container.mainContext

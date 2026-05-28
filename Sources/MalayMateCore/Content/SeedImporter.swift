@@ -12,7 +12,14 @@ public struct SeedImporter {
 
     @MainActor
     public func importBundledSeed(into context: ModelContext, now: Date = .now) throws -> SeedImportSummary {
-        try importDecks(from: SeedResource.bundledStarterDeckData(), into: context, now: now)
+        var total = SeedImportSummary(decksInserted: 0, wordsInserted: 0, cardsInserted: 0)
+        for data in try SeedResource.allBundledDeckData() {
+            let summary = try importDecks(from: data, into: context, now: now)
+            total.decksInserted += summary.decksInserted
+            total.wordsInserted += summary.wordsInserted
+            total.cardsInserted += summary.cardsInserted
+        }
+        return total
     }
 
     @MainActor

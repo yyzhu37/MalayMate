@@ -62,13 +62,46 @@ public extension JSONEncoder {
 
 public enum SeedResource {
     public static func bundledStarterDeckData() throws -> Data {
-        guard let url = Bundle.module.url(forResource: "starter_deck", withExtension: "json") else {
-            throw SeedResourceError.missingBundledStarterDeck
+        try bundledDeckData(resourceName: "starter_deck", missingError: .missingBundledStarterDeck)
+    }
+
+    public static func bundledOpenFrequencyStarterDeckData() throws -> Data {
+        try bundledDeckData(resourceName: "open_frequency_starter_deck", missingError: .missingBundledOpenFrequencyStarterDeck)
+    }
+
+    public static func allBundledDeckData() throws -> [Data] {
+        [
+            try bundledStarterDeckData(),
+            try bundledOpenFrequencyStarterDeckData()
+        ]
+    }
+
+    private static func bundledDeckData(resourceName: String, missingError: SeedResourceError) throws -> Data {
+        guard let url = resourceBundle().url(forResource: resourceName, withExtension: "json") else {
+            throw missingError
         }
         return try Data(contentsOf: url)
+    }
+
+    private static func resourceBundle() -> Bundle {
+        let bundleName = "MalayMate_MalayMateCore.bundle"
+        let candidates = [
+            Bundle.main.resourceURL?.appendingPathComponent(bundleName),
+            Bundle.main.bundleURL.appendingPathComponent(bundleName),
+            Bundle.module.bundleURL
+        ]
+
+        for candidate in candidates {
+            if let candidate, let bundle = Bundle(url: candidate) {
+                return bundle
+            }
+        }
+
+        return Bundle.module
     }
 }
 
 public enum SeedResourceError: Error, Equatable {
     case missingBundledStarterDeck
+    case missingBundledOpenFrequencyStarterDeck
 }

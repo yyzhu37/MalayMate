@@ -108,12 +108,12 @@ struct ReviewView: View {
                 .disabled(isAnswerRevealed)
 
                 Button {
-                    speak(item.word.term)
+                    playAudio(for: item)
                 } label: {
                     Label("Audio", systemImage: "speaker.wave.2")
                 }
-                .disabled(!speechService.canSpeakMalay)
-                .help(audioHelpText)
+                .disabled(!canPlayAudio(for: item))
+                .help(audioHelpText(for: item))
 
                 Spacer()
 
@@ -131,11 +131,17 @@ struct ReviewView: View {
         }
     }
 
-    private var audioHelpText: String {
+    private func audioHelpText(for item: DueReviewItem) -> String {
+        guard speechService.canSpeakMalay else {
+            return "No Malay system voice available"
+        }
+        guard canPlayVisibleMalayAudio(for: item) else {
+            return "Reveal the answer before playing Malay audio."
+        }
         if let voice = speechService.availableMalayVoice {
             return "Malay voice: \(voice.name) (\(voice.language))"
         }
-        return "No Malay system voice available"
+        return "Malay audio is available"
     }
 
     private func ratingButton(_ title: String, systemImage: String, rating: ReviewRating) -> some View {
@@ -161,6 +167,26 @@ struct ReviewView: View {
     private func revealAnswer() {
         isAnswerRevealed = true
         statusMessage = nil
+    }
+
+    private func canPlayAudio(for item: DueReviewItem) -> Bool {
+        speechService.canSpeakMalay && canPlayVisibleMalayAudio(for: item)
+    }
+
+    private func canPlayVisibleMalayAudio(for item: DueReviewItem) -> Bool {
+        CardDirection(rawValue: item.card.directionRaw) == .malayToChinese || isAnswerRevealed
+    }
+
+    private func audioText(for item: DueReviewItem) -> String {
+        CardDirection(rawValue: item.card.directionRaw) == .malayToChinese ? item.card.prompt : item.card.answer
+    }
+
+    private func playAudio(for item: DueReviewItem) {
+        guard canPlayVisibleMalayAudio(for: item) else {
+            statusMessage = "Reveal the answer before playing Malay audio."
+            return
+        }
+        speak(audioText(for: item))
     }
 
     private func speak(_ text: String) {

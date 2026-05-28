@@ -1,24 +1,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    enum Selection: Hashable {
+        case review
+        case addWord
+        case settings
+    }
+
+    @State private var selection: Selection = .review
+
     var body: some View {
         NavigationSplitView {
-            List {
-                Section("Today") {
-                    Label("Review", systemImage: "rectangle.stack")
-                    Label("Add Word", systemImage: "plus.circle")
-                    Label("Settings", systemImage: "gearshape")
-                }
-            }
-            .navigationTitle("MalayMate")
+            SidebarView(selection: $selection)
         } detail: {
-            VStack(spacing: 16) {
-                Text("MalayMate")
-                    .font(.largeTitle.weight(.semibold))
-                Text("Review-first Malay vocabulary practice")
-                    .foregroundStyle(.secondary)
+            switch selection {
+            case .review:
+                ReviewView()
+            case .addWord:
+                AddWordView()
+            case .settings:
+                SettingsView()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }

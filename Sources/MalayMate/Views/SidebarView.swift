@@ -6,11 +6,24 @@ struct SidebarView: View {
     @Binding var selection: ContentView.Selection
 
     @Query(sort: \DeckRecord.name) private var decks: [DeckRecord]
+    @Query private var cards: [CardRecord]
+    @Query private var words: [WordRecord]
     @Query private var reviewStates: [ReviewStateRecord]
     @State private var now = Date.now
 
     private var dueCount: Int {
-        return reviewStates.filter { $0.dueAt <= now }.count
+        let wordsByID = Dictionary(uniqueKeysWithValues: words.map { ($0.id, $0) })
+        let dueCardIDs = Set(reviewStates.filter { $0.dueAt <= now }.map(\.cardID))
+
+        return cards.filter { card in
+            guard
+                dueCardIDs.contains(card.id),
+                let word = wordsByID[card.wordID]
+            else {
+                return false
+            }
+            return LearningStatus(word: word) != .new
+        }.count
     }
 
     var body: some View {
@@ -27,6 +40,10 @@ struct SidebarView: View {
                     } icon: {
                         Image(systemName: "rectangle.stack")
                     }
+                }
+
+                NavigationLink(value: ContentView.Selection.learn) {
+                    Label("Learn", systemImage: "graduationcap")
                 }
 
                 NavigationLink(value: ContentView.Selection.library(deckID: nil)) {

@@ -32,10 +32,12 @@ public final class WordRecord {
     public var examplesJSON: String
     public var sourceRefsJSON: String
     public var reviewStatus: String
+    public var learningStatusRaw: String?
+    public var learnedAt: Date?
     public var createdAt: Date
     public var updatedAt: Date
 
-    public init(id: UUID, term: String, languageCode: String, chineseMeaning: String, partOfSpeech: String, pronunciationNotes: String, syllablesJSON: String, examplesJSON: String, sourceRefsJSON: String, reviewStatus: String, createdAt: Date, updatedAt: Date) {
+    public init(id: UUID, term: String, languageCode: String, chineseMeaning: String, partOfSpeech: String, pronunciationNotes: String, syllablesJSON: String, examplesJSON: String, sourceRefsJSON: String, reviewStatus: String, createdAt: Date, updatedAt: Date, learningStatusRaw: String? = nil, learnedAt: Date? = nil) {
         self.id = id
         self.term = term
         self.languageCode = languageCode
@@ -46,6 +48,8 @@ public final class WordRecord {
         self.examplesJSON = examplesJSON
         self.sourceRefsJSON = sourceRefsJSON
         self.reviewStatus = reviewStatus
+        self.learningStatusRaw = learningStatusRaw
+        self.learnedAt = learnedAt
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }

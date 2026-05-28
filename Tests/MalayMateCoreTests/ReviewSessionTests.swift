@@ -5,16 +5,14 @@ import XCTest
 
 @MainActor
 final class ReviewSessionTests: XCTestCase {
-    func testDueCardsReturnSeededReviewItems() throws {
+    func testDueCardsExcludeUnlearnedSeedWords() throws {
         let container = try ModelContainerFactory.makeInMemory()
         let context = container.mainContext
         _ = try SeedImporter().importBundledSeed(into: context, now: Date(timeIntervalSince1970: 1_800_000_000))
 
         let items = try ReviewSession(context: context).dueCards(now: Date(timeIntervalSince1970: 1_800_000_100))
 
-        XCTAssertFalse(items.isEmpty)
-        XCTAssertTrue(items.contains { $0.word.term == "makan" })
-        XCTAssertTrue(items.allSatisfy { $0.state.dueAt <= Date(timeIntervalSince1970: 1_800_000_100) })
+        XCTAssertTrue(items.isEmpty)
     }
 
     func testDueCardsAreOrderedByDueAtThenCardID() throws {

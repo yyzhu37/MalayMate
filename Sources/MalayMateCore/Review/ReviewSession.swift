@@ -40,6 +40,9 @@ public final class ReviewSession {
                 guard let card = cardsByID[state.cardID], let word = wordsByID[card.wordID] else {
                     return nil
                 }
+                guard LearningStatus(word: word) != .new else {
+                    return nil
+                }
                 return DueReviewItem(word: word, card: card, state: state)
             }
             .prefix(limit)

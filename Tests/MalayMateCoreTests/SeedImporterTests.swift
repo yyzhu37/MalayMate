@@ -21,8 +21,9 @@ final class SeedImporterTests: XCTestCase {
         XCTAssertEqual(try context.fetch(FetchDescriptor<DeckRecord>()).count, 2)
         XCTAssertEqual(try context.fetch(FetchDescriptor<CardRecord>()).count, summary.cardsInserted)
         XCTAssertEqual(reviewStates.count, summary.cardsInserted)
+        XCTAssertTrue(words.allSatisfy { LearningStatus(word: $0) == .new })
         XCTAssertTrue(reviewStates.allSatisfy { $0.box == 1 })
-        XCTAssertTrue(reviewStates.allSatisfy { $0.dueAt == now })
+        XCTAssertTrue(reviewStates.allSatisfy { $0.dueAt == .distantFuture })
         XCTAssertTrue(reviewStates.allSatisfy { $0.lapses == 0 })
         XCTAssertTrue(reviewStates.allSatisfy { $0.lastReviewedAt == nil })
     }
@@ -41,6 +42,7 @@ final class SeedImporterTests: XCTestCase {
         XCTAssertEqual(try context.fetch(FetchDescriptor<WordRecord>()).count, 9)
         XCTAssertEqual(try context.fetch(FetchDescriptor<CardRecord>()).count, 18)
         XCTAssertEqual(try context.fetch(FetchDescriptor<ReviewStateRecord>()).count, 18)
+        XCTAssertTrue(try context.fetch(FetchDescriptor<WordRecord>()).allSatisfy { LearningStatus(word: $0) == .new })
     }
 
     func testSecondImportDoesNotDuplicateStarterDecks() throws {

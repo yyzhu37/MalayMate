@@ -21,6 +21,8 @@ final class AddWordServiceTests: XCTestCase {
         XCTAssertEqual(word.partOfSpeech, "unknown")
         XCTAssertEqual(word.pronunciationNotes, "belajar")
         XCTAssertEqual(word.reviewStatus, "needsEnrichment")
+        XCTAssertEqual(LearningStatus(word: word), .inReview)
+        XCTAssertNil(word.learnedAt)
         XCTAssertEqual(cards.count, 2)
         XCTAssertEqual(reviewStates.count, 2)
         for reviewState in reviewStates {

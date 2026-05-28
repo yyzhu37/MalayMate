@@ -59,7 +59,9 @@ public struct SeedImporter {
                     sourceRefsJSON: try encodeJSONString(seedWord.sourceRefs),
                     reviewStatus: "reviewed",
                     createdAt: now,
-                    updatedAt: now
+                    updatedAt: now,
+                    learningStatusRaw: LearningStatus.new.rawValue,
+                    learnedAt: nil
                 )
                 context.insert(word)
                 wordsInserted += 1
@@ -81,7 +83,7 @@ public struct SeedImporter {
                     context.insert(ReviewStateRecord(
                         cardID: cardID,
                         box: state.box,
-                        dueAt: state.dueAt,
+                        dueAt: .distantFuture,
                         lapses: state.lapses,
                         lastReviewedAt: state.lastReviewedAt,
                         easeHint: state.easeHint

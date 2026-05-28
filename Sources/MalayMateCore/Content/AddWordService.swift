@@ -61,7 +61,9 @@ public final class AddWordService {
             sourceRefsJSON: try encodeJSONString(sourceRefs),
             reviewStatus: reviewStatus,
             createdAt: now,
-            updatedAt: now
+            updatedAt: now,
+            learningStatusRaw: LearningStatus.inReview.rawValue,
+            learnedAt: nil
         )
         context.insert(word)
 

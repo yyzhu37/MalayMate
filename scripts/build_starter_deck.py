@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import csv
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -14,6 +15,10 @@ DEFAULT_ATTRIBUTION = "MalayMate local content builder"
 def slug(value):
     cleaned = re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
     return cleaned or "item"
+
+
+def hash_suffix(value, length=10):
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()[:length]
 
 
 def source(
@@ -37,12 +42,16 @@ def source(
 
 def read_frequency(path):
     rows = []
+    seen_terms = set()
     with Path(path).open("r", encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle, delimiter="\t")
         for row in reader:
             term = row.get("term", "").strip()
             if not term:
                 continue
+            if term in seen_terms:
+                raise ValueError(f"Duplicate frequency term '{term}'")
+            seen_terms.add(term)
             rows.append({"term": term, "count": int(row.get("count", "0") or 0)})
     return rows
 
@@ -64,7 +73,7 @@ def read_dictionary(path):
             entries[term] = {
                 "term": term,
                 "partOfSpeech": payload.get("partOfSpeech") or payload.get("pos", ""),
-                "chineseMeaning": payload.get("chineseMeaning") or payload.get("zh", ""),
+                "chineseMeaning": (payload.get("chineseMeaning") or payload.get("zh", "")).strip(),
                 "pronunciationNotes": payload.get("pronunciationNotes", ""),
                 "syllables": syllables,
                 "sourceUrl": payload.get("sourceUrl", ""),
@@ -112,12 +121,13 @@ def fallback_example(term):
     }
 
 
-def build_examples(term, rows, word_index):
+def build_examples(term, rows):
     examples = []
     for example_index, row in enumerate((rows or [fallback_example(term)])[:2], start=1):
+        example_hash = hash_suffix(f"{term}\0{row['malay']}")
         examples.append(
             {
-                "id": f"open-frequency-starter-example-{slug(term)}-{word_index}-{example_index}",
+                "id": f"open-frequency-starter-example-{slug(term)}-{example_index}-{example_hash}",
                 "malay": row["malay"],
                 "chinese": row.get("chinese", ""),
                 "sourceRefs": [
@@ -165,7 +175,7 @@ def build_deck(frequency, dictionary, sentences, limit=None):
     selected_rows = sorted_rows[:limit] if limit is not None else sorted_rows
 
     words = []
-    for word_index, row in enumerate(selected_rows, start=1):
+    for row in selected_rows:
         term = row["term"]
         entry = dictionary_entries.get(term)
         if entry is None:
@@ -175,14 +185,14 @@ def build_deck(frequency, dictionary, sentences, limit=None):
         source_url = entry.get("sourceUrl", "")
         words.append(
             {
-                "id": f"open-frequency-starter-word-{slug(term)}-{word_index}",
+                "id": f"open-frequency-starter-word-{slug(term)}-{hash_suffix(term)}",
                 "term": term,
                 "languageCode": "ms",
                 "chineseMeaning": entry.get("chineseMeaning", ""),
                 "partOfSpeech": entry.get("partOfSpeech", ""),
                 "pronunciationNotes": entry.get("pronunciationNotes", ""),
                 "syllables": entry.get("syllables", []),
-                "examples": build_examples(term, sentence_rows.get(term, []), word_index),
+                "examples": build_examples(term, sentence_rows.get(term, [])),
                 "sourceRefs": [
                     source(
                         "term",

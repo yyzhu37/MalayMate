@@ -17,6 +17,7 @@ class ContentBuilderTests(unittest.TestCase):
         dictionary_rows,
         sentence_rows=None,
     ):
+        tmp_path.mkdir(parents=True, exist_ok=True)
         frequency_path = tmp_path / "frequency.tsv"
         dictionary_path = tmp_path / "dictionary.jsonl"
         sentences_path = tmp_path / "sentences.tsv"
@@ -153,6 +154,56 @@ class ContentBuilderTests(unittest.TestCase):
                 self.assertTrue(example["id"].startswith("open-frequency-starter-example-"))
                 ids.append(example["id"])
         self.assertEqual(len(ids), len(set(ids)))
+
+    def test_word_ids_are_stable_when_frequency_order_changes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            dictionary_rows = [
+                {"term": "makan", "zh": "吃"},
+                {"term": "minum", "zh": "喝"},
+                {"term": "belajar", "zh": "学习"},
+            ]
+            first_frequency, first_dictionary, first_sentences = self.write_inputs(
+                tmp_path / "first",
+                [("makan", 100), ("minum", 90), ("belajar", 80)],
+                dictionary_rows,
+            )
+            second_frequency, second_dictionary, second_sentences = self.write_inputs(
+                tmp_path / "second",
+                [("belajar", 500), ("minum", 90), ("makan", 10)],
+                dictionary_rows,
+            )
+
+            first_payload = build_deck(first_frequency, first_dictionary, first_sentences)
+            second_payload = build_deck(second_frequency, second_dictionary, second_sentences)
+
+        first_ids = {word["term"]: word["id"] for word in first_payload["decks"][0]["words"]}
+        second_ids = {word["term"]: word["id"] for word in second_payload["decks"][0]["words"]}
+        self.assertEqual(first_ids["makan"], second_ids["makan"])
+
+    def test_rejects_duplicate_frequency_terms(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            frequency_path, dictionary_path, sentences_path = self.write_inputs(
+                tmp_path,
+                [("makan", 100), ("makan", 90)],
+                [{"term": "makan", "zh": "吃"}],
+            )
+
+            with self.assertRaisesRegex(ValueError, "Duplicate frequency term 'makan'"):
+                build_deck(frequency_path, dictionary_path, sentences_path)
+
+    def test_rejects_whitespace_only_dictionary_meaning(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            frequency_path, dictionary_path, sentences_path = self.write_inputs(
+                tmp_path,
+                [("makan", 100)],
+                [{"term": "makan", "zh": "   "}],
+            )
+
+            with self.assertRaisesRegex(ValueError, "Missing dictionary meaning for term 'makan'"):
+                build_deck(frequency_path, dictionary_path, sentences_path)
 
     def test_fallback_example_is_used_when_sentence_is_missing(self):
         with tempfile.TemporaryDirectory() as tmp:

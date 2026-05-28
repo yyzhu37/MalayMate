@@ -1,2 +1,8 @@
 .superpowers/
-
+.build/
+.swiftpm/
+build/
+content/cache/
+__pycache__/
+*.py[cod]
+.DS_Store

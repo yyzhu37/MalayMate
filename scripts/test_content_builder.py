@@ -146,9 +146,17 @@ class ContentBuilderTests(unittest.TestCase):
             "word": "rumah",
             "lang_code": "ms",
             "pos": "noun",
-            "sounds": [{"ipa": "/rumah/"}],
+            "sounds": [
+                {"ipa": "/rumah/"},
+                {"mp3_url": "https://upload.wikimedia.org/rumah.mp3"},
+            ],
             "hyphenations": [{"parts": ["ru", "mah"]}],
-            "senses": [{"glosses": ["house; home"]}],
+            "senses": [
+                {
+                    "glosses": ["house; home"],
+                    "examples": [{"text": "rumah besar"}],
+                }
+            ],
         }
 
         row = normalize_entry(payload)
@@ -157,8 +165,60 @@ class ContentBuilderTests(unittest.TestCase):
         self.assertEqual(row["pos"], "noun")
         self.assertEqual(row["zh"], "英文释义：house; home")
         self.assertEqual(row["pronunciationNotes"], "/rumah/")
+        self.assertEqual(row["audioURL"], "https://upload.wikimedia.org/rumah.mp3")
+        self.assertEqual(row["audioFormat"], "mp3")
         self.assertEqual(row["syllables"], ["ru", "mah"])
+        self.assertEqual(row["examples"], ["rumah besar"])
         self.assertEqual(row["sourceName"], "Kaikki/Wiktionary")
+
+    def test_build_deck_uses_dynamic_deck_name_and_preserves_audio_metadata(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            frequency_path, dictionary_path, sentences_path = self.write_inputs(
+                tmp_path,
+                [("makan", 100), ("minum", 90)],
+                [
+                    {
+                        "term": "makan",
+                        "zh": "吃",
+                        "audioURL": "https://upload.wikimedia.org/makan.mp3",
+                        "audioFormat": "mp3",
+                    },
+                    {"term": "minum", "zh": "喝"},
+                ],
+            )
+
+            payload = build_deck(frequency_path, dictionary_path, sentences_path)
+
+        deck = payload["decks"][0]
+        self.assertEqual(deck["name"], "Open Dictionary Malay 2")
+        self.assertTrue(deck["description"].startswith("2 frequency-ranked"))
+        source_ref = deck["words"][0]["sourceRefs"][0]
+        self.assertEqual(source_ref["audioURL"], "https://upload.wikimedia.org/makan.mp3")
+        self.assertEqual(source_ref["audioFormat"], "mp3")
+
+    def test_build_deck_uses_dictionary_examples_before_template_fallback(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            frequency_path, dictionary_path, sentences_path = self.write_inputs(
+                tmp_path,
+                [("rumah", 100)],
+                [
+                    {
+                        "term": "rumah",
+                        "zh": "房子",
+                        "examples": ["rumah besar"],
+                        "sourceName": "Kaikki/Wiktionary",
+                        "sourceUrl": "https://en.wiktionary.org/wiki/rumah#Malay",
+                    }
+                ],
+            )
+
+            payload = build_deck(frequency_path, dictionary_path, sentences_path)
+
+        example = payload["decks"][0]["words"][0]["examples"][0]
+        self.assertEqual(example["malay"], "rumah besar")
+        self.assertEqual(example["sourceRefs"][0]["sourceName"], "Kaikki/Wiktionary")
 
     def test_extract_entries_filters_non_lemma_rows_and_limits_output(self):
         with tempfile.TemporaryDirectory() as tmp:

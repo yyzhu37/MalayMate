@@ -4,40 +4,54 @@ import SwiftUI
 
 struct LibraryView: View {
     let selectedDeckID: String?
+    private let pageSize = 100
 
     @Query(sort: \DeckRecord.name) private var decks: [DeckRecord]
     @Query(sort: \WordRecord.term) private var words: [WordRecord]
+    @State private var searchText = ""
+    @State private var statusFilter = VocabularyLibraryStatusFilter.all
+    @State private var sort = VocabularyLibrarySort.deckOrder
+    @State private var visibleLimit = 100
 
-    private var sections: [VocabularyLibrarySection] {
-        VocabularyLibrary.sections(decks: decks, words: words)
-    }
-
-    private var visibleSections: [VocabularyLibrarySection] {
-        guard let selectedDeckID else {
-            return sections
-        }
-        return sections.filter { $0.id == selectedDeckID }
-    }
-
-    private var wordCount: Int {
-        visibleSections.reduce(0) { $0 + $1.words.count }
+    private var browseResult: VocabularyLibraryBrowseResult {
+        VocabularyLibrary.browseSections(
+            decks: decks,
+            words: words,
+            selectedDeckID: selectedDeckID,
+            query: VocabularyLibraryQuery(
+                searchText: searchText,
+                statusFilter: statusFilter,
+                sort: sort,
+                visibleLimit: visibleLimit
+            )
+        )
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
             header
+            controls
 
-            if visibleSections.isEmpty {
+            if browseResult.sections.isEmpty {
                 ContentUnavailableView(
                     "没有词条",
                     systemImage: "books.vertical",
-                    description: Text("Add a word or import a starter deck.")
+                    description: Text(searchText.isEmpty ? "Add a word or import a starter deck." : "换一个搜索词或筛选条件。")
                 )
             } else {
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 18) {
-                        ForEach(visibleSections) { section in
+                        ForEach(browseResult.sections) { section in
                             deckSection(section)
+                        }
+
+                        if browseResult.hasMore {
+                            Button {
+                                visibleLimit += pageSize
+                            } label: {
+                                Label("显示更多", systemImage: "chevron.down")
+                            }
+                            .buttonStyle(.bordered)
                         }
                     }
                     .padding(.bottom, 24)
@@ -51,11 +65,48 @@ struct LibraryView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(selectedDeckID == nil ? "词库" : (visibleSections.first?.name ?? "词库"))
+            Text(selectedDeckID == nil ? "词库" : (browseResult.sections.first?.name ?? selectedDeckName ?? "词库"))
                 .font(.largeTitle.weight(.semibold))
-            Text("\(visibleSections.count) decks · \(wordCount) words")
+            Text("\(browseResult.sections.count) 个词库 · 显示 \(browseResult.visibleCount) / \(browseResult.totalMatches) 个词")
                 .foregroundStyle(.secondary)
         }
+    }
+
+    private var selectedDeckName: String? {
+        guard let selectedDeckID else {
+            return nil
+        }
+        return decks.first { $0.id == selectedDeckID }?.name
+    }
+
+    private var controls: some View {
+        HStack(spacing: 12) {
+            TextField("搜索词、中文、词性或发音", text: $searchText)
+                .textFieldStyle(.roundedBorder)
+                .frame(width: 260)
+                .onChange(of: searchText) { _, _ in resetVisibleLimit() }
+
+            Picker("Status", selection: $statusFilter) {
+                ForEach(VocabularyLibraryStatusFilter.allCases) { filter in
+                    Text(filter.title).tag(filter)
+                }
+            }
+            .pickerStyle(.segmented)
+            .frame(width: 310)
+            .onChange(of: statusFilter) { _, _ in resetVisibleLimit() }
+
+            Picker("Sort", selection: $sort) {
+                ForEach(VocabularyLibrarySort.allCases) { sort in
+                    Text(sort.title).tag(sort)
+                }
+            }
+            .pickerStyle(.menu)
+            .frame(width: 150)
+            .onChange(of: sort) { _, _ in resetVisibleLimit() }
+
+            Spacer()
+        }
+        .frame(maxWidth: 820, alignment: .leading)
     }
 
     private func deckSection(_ section: VocabularyLibrarySection) -> some View {
@@ -89,6 +140,10 @@ struct LibraryView: View {
                     .stroke(.quaternary)
             }
         }
+    }
+
+    private func resetVisibleLimit() {
+        visibleLimit = pageSize
     }
 }
 
@@ -146,5 +201,35 @@ private struct LibraryWordRow: View {
             .padding(.vertical, 10)
         }
         .padding(.horizontal, 14)
+    }
+}
+
+private extension VocabularyLibraryStatusFilter {
+    var title: String {
+        switch self {
+        case .all:
+            return "全部"
+        case .new:
+            return "新词"
+        case .inReview:
+            return "复习中"
+        case .mastered:
+            return "已掌握"
+        }
+    }
+}
+
+private extension VocabularyLibrarySort {
+    var title: String {
+        switch self {
+        case .deckOrder:
+            return "词库顺序"
+        case .term:
+            return "字母"
+        case .status:
+            return "状态"
+        case .createdNewest:
+            return "新添加"
+        }
     }
 }

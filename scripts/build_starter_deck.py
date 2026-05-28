@@ -28,8 +28,10 @@ def source(
     license=DEFAULT_LICENSE,
     attribution=DEFAULT_ATTRIBUTION,
     review_status="needs-review",
+    audio_url="",
+    audio_format="",
 ):
-    return {
+    row = {
         "field": field,
         "sourceName": source_name,
         "sourceUrl": source_url,
@@ -38,6 +40,11 @@ def source(
         "retrievedAt": GENERATED_AT,
         "reviewStatus": review_status,
     }
+    if audio_url:
+        row["audioURL"] = audio_url
+    if audio_format:
+        row["audioFormat"] = audio_format
+    return row
 
 
 def read_frequency(path):
@@ -85,13 +92,54 @@ def read_dictionary(paths):
                     "chineseMeaning": (payload.get("chineseMeaning") or payload.get("zh", "")).strip(),
                     "pronunciationNotes": payload.get("pronunciationNotes", ""),
                     "syllables": syllables,
+                    "examples": dictionary_examples(payload, term),
                     "sourceUrl": payload.get("sourceUrl", ""),
                     "sourceName": payload.get("sourceName", "MalayMate sample dictionary"),
                     "license": payload.get("license", DEFAULT_LICENSE),
                     "attribution": payload.get("attribution", DEFAULT_ATTRIBUTION),
                     "reviewStatus": payload.get("reviewStatus", "needs-review"),
+                    "audioURL": payload.get("audioURL", ""),
+                    "audioFormat": payload.get("audioFormat", ""),
                 }
     return entries
+
+
+def dictionary_examples(payload, term):
+    rows = []
+    raw_examples = payload.get("examples", [])
+    if isinstance(raw_examples, str):
+        raw_examples = [raw_examples]
+    for raw in raw_examples:
+        if isinstance(raw, str):
+            malay = raw.strip()
+            chinese = ""
+            source_url = payload.get("sourceUrl", "")
+            source_name = payload.get("sourceName", "MalayMate sample dictionary")
+            license = payload.get("license", DEFAULT_LICENSE)
+            attribution = payload.get("attribution", DEFAULT_ATTRIBUTION)
+            review_status = payload.get("reviewStatus", "needs-review")
+        else:
+            malay = (raw.get("malay") or raw.get("text") or "").strip()
+            chinese = (raw.get("chinese") or raw.get("zh") or "").strip()
+            source_url = raw.get("sourceUrl") or payload.get("sourceUrl", "")
+            source_name = raw.get("sourceName") or payload.get("sourceName", "MalayMate sample dictionary")
+            license = raw.get("license") or payload.get("license", DEFAULT_LICENSE)
+            attribution = raw.get("attribution") or payload.get("attribution", DEFAULT_ATTRIBUTION)
+            review_status = raw.get("reviewStatus") or payload.get("reviewStatus", "needs-review")
+        if not malay:
+            continue
+        rows.append(
+            {
+                "malay": malay,
+                "chinese": chinese,
+                "sourceUrl": source_url,
+                "sourceName": source_name,
+                "license": license,
+                "attribution": attribution,
+                "reviewStatus": review_status,
+            }
+        )
+    return rows
 
 
 def read_sentences(path):
@@ -202,7 +250,7 @@ def build_deck(frequency, dictionary, sentences, limit=None):
                 "partOfSpeech": entry.get("partOfSpeech", ""),
                 "pronunciationNotes": entry.get("pronunciationNotes", ""),
                 "syllables": entry.get("syllables", []),
-                "examples": build_examples(term, sentence_rows.get(term, [])),
+                "examples": build_examples(term, sentence_rows.get(term) or entry.get("examples", [])),
                 "sourceRefs": [
                     source(
                         "term",
@@ -211,6 +259,8 @@ def build_deck(frequency, dictionary, sentences, limit=None):
                         entry.get("license", DEFAULT_LICENSE),
                         entry.get("attribution", DEFAULT_ATTRIBUTION),
                         entry.get("reviewStatus", "needs-review"),
+                        entry.get("audioURL", ""),
+                        entry.get("audioFormat", ""),
                     ),
                     source(
                         "frequency",
@@ -230,8 +280,8 @@ def build_deck(frequency, dictionary, sentences, limit=None):
         "decks": [
             {
                 "id": "starter-local-open-access",
-                "name": "Open Dictionary Malay 300",
-                "description": "Frequency-ranked Malay entries extracted from Kaikki/Wiktionary with local examples.",
+                "name": f"Open Dictionary Malay {len(words)}",
+                "description": f"{len(words)} frequency-ranked Malay entries extracted from Kaikki/Wiktionary with local examples.",
                 "isStarter": True,
                 "words": words,
             }

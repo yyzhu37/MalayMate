@@ -70,6 +70,7 @@ final class LearnSessionTests: XCTestCase {
         XCTAssertEqual(Set(states.map(\.box)), [1])
         XCTAssertEqual(Set(states.map(\.lapses)), [0])
         XCTAssertTrue(states.allSatisfy { $0.lastReviewedAt == nil })
+        XCTAssertEqual(Set(states.map(\.easeHint)), [2.5])
         XCTAssertEqual(try ReviewSession(context: context).dueCards(now: now).count, 0)
         XCTAssertEqual(try ReviewSession(context: context).dueCards(now: now.addingTimeInterval(10 * 60)).count, 2)
     }

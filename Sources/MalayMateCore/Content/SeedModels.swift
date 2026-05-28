@@ -41,6 +41,8 @@ public struct SeedSourceRef: Codable, Equatable, Sendable {
     public var attribution: String
     public var retrievedAt: Date
     public var reviewStatus: String
+    public var audioURL: String? = nil
+    public var audioFormat: String? = nil
 }
 
 public extension JSONDecoder {

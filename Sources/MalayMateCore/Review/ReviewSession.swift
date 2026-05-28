@@ -49,7 +49,8 @@ public final class ReviewSession {
             .map { $0 }
     }
 
-    public func apply(rating: ReviewRating, to cardID: UUID, now: Date) throws {
+    @discardableResult
+    public func apply(rating: ReviewRating, to cardID: UUID, now: Date) throws -> ReviewUpdate {
         let states = try context.fetch(FetchDescriptor<ReviewStateRecord>())
         guard let state = states.first(where: { $0.cardID == cardID }) else {
             throw ReviewSessionError.missingReviewState(cardID)
@@ -81,6 +82,7 @@ public final class ReviewSession {
             nextDueAt: update.nextDueAt
         ))
         try context.save()
+        return update
     }
 }
 

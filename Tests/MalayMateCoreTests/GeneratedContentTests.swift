@@ -19,13 +19,16 @@ final class GeneratedContentTests: XCTestCase {
 
         XCTAssertEqual(collection.decks.count, 1)
         XCTAssertEqual(summary.decksInserted, 1)
-        XCTAssertEqual(summary.wordsInserted, 300)
-        XCTAssertEqual(summary.cardsInserted, 600)
+        XCTAssertEqual(summary.wordsInserted, 3000)
+        XCTAssertEqual(summary.cardsInserted, 6000)
         XCTAssertEqual(try context.fetch(FetchDescriptor<DeckRecord>()).count, 1)
-        XCTAssertEqual(try context.fetch(FetchDescriptor<WordRecord>()).count, 300)
-        XCTAssertEqual(cards.count, 600)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<WordRecord>()).count, 3000)
+        XCTAssertEqual(cards.count, 6000)
         XCTAssertTrue(cards.allSatisfy { !$0.prompt.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty })
         XCTAssertTrue(cards.allSatisfy { !$0.answer.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty })
+        XCTAssertTrue(collection.decks.flatMap(\.words).contains { word in
+            word.sourceRefs.contains { $0.audioURL?.isEmpty == false }
+        })
     }
 
     private func generatedStarterDeckURL() -> URL {

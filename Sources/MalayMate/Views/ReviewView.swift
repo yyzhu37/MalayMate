@@ -290,17 +290,19 @@ struct ReviewView: View {
         }
 
         do {
-            try ReviewSession(context: modelContext).apply(rating: rating, to: currentItem.card.id, now: .now)
+            let update = try ReviewSession(context: modelContext).apply(rating: rating, to: currentItem.card.id, now: .now)
+            let nextReviewMessage = "下次复习：\(update.nextDueAt.formatted(date: .abbreviated, time: .shortened))"
             dueItems.remove(at: currentIndex)
             if dueItems.isEmpty {
                 refresh()
+                statusMessage = nextReviewMessage
             } else if currentIndex >= dueItems.count {
                 currentIndex = max(dueItems.count - 1, 0)
                 resetAnswerState()
-                statusMessage = nil
+                statusMessage = nextReviewMessage
             } else {
                 resetAnswerState()
-                statusMessage = nil
+                statusMessage = nextReviewMessage
             }
         } catch {
             statusMessage = "Could not save review: \(error.localizedDescription)"

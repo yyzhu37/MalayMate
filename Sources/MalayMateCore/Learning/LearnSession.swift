@@ -80,7 +80,7 @@ public final class LearnSession {
             state.dueAt = firstReviewAt
             state.lapses = 0
             state.lastReviewedAt = nil
-            state.easeHint = 1.0
+            state.easeHint = LeitnerScheduler.defaultEase
         }
 
         try context.save()

@@ -36,14 +36,14 @@ final class SeedImporterTests: XCTestCase {
         let summary = try SeedImporter().importBundledSeed(into: context, now: now)
 
         XCTAssertEqual(summary.decksInserted, 3)
-        XCTAssertEqual(summary.wordsInserted, 306)
-        XCTAssertEqual(summary.cardsInserted, 612)
+        XCTAssertEqual(summary.wordsInserted, 3006)
+        XCTAssertEqual(summary.cardsInserted, 6012)
         XCTAssertEqual(try context.fetch(FetchDescriptor<DeckRecord>()).count, 3)
         let importedWords = try context.fetch(FetchDescriptor<WordRecord>())
-        XCTAssertEqual(importedWords.count, 306)
+        XCTAssertEqual(importedWords.count, 3006)
         XCTAssertEqual(Set(importedWords.map { $0.term.lowercased() }).count, importedWords.count)
-        XCTAssertEqual(try context.fetch(FetchDescriptor<CardRecord>()).count, 612)
-        XCTAssertEqual(try context.fetch(FetchDescriptor<ReviewStateRecord>()).count, 612)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<CardRecord>()).count, 6012)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<ReviewStateRecord>()).count, 6012)
         XCTAssertTrue(importedWords.allSatisfy { LearningStatus(word: $0) == .new })
     }
 

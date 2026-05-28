@@ -65,7 +65,9 @@ def normalize_entry(entry):
         "pos": ALLOWED_POS[pos],
         "zh": f"英文释义：{gloss}",
         "pronunciationNotes": pronunciation_from(entry),
+        **audio_from(entry),
         "syllables": syllables,
+        "examples": examples_from(entry, word),
         "sourceUrl": f"https://en.wiktionary.org/wiki/{quote(word)}#Malay",
         "sourceName": "Kaikki/Wiktionary",
         "license": "open dictionary source",
@@ -103,12 +105,51 @@ def pronunciation_from(entry):
     return ""
 
 
+def audio_from(entry):
+    for sound in entry.get("sounds", []):
+        mp3_url = sound.get("mp3_url")
+        if mp3_url:
+            return {"audioURL": mp3_url, "audioFormat": "mp3"}
+        ogg_url = sound.get("ogg_url")
+        if ogg_url:
+            return {"audioURL": ogg_url, "audioFormat": "ogg"}
+    return {}
+
+
 def syllables_from(entry):
     for hyphenation in entry.get("hyphenations", []):
         parts = [part for part in hyphenation.get("parts", []) if part and re.search(r"[A-Za-z]", part)]
         if parts:
             return parts
     return []
+
+
+def examples_from(entry, word):
+    examples = []
+    seen = set()
+    for sense in entry.get("senses", []):
+        if SKIP_SENSE_TAGS.intersection(set(sense.get("tags", []))):
+            continue
+        for example in sense.get("examples", []):
+            text = clean_example(example.get("text", ""))
+            if not text or text.lower() in seen:
+                continue
+            if word.lower() not in text.lower():
+                continue
+            seen.add(text.lower())
+            examples.append(text)
+            if len(examples) >= 2:
+                return examples
+    return examples
+
+
+def clean_example(value):
+    value = re.sub(r"\s+", " ", value or "").strip()
+    if not value or len(value) > 140:
+        return ""
+    if any(marker in value for marker in ("{", "}", "[", "]", "|")):
+        return ""
+    return value
 
 
 def entry_score(row):

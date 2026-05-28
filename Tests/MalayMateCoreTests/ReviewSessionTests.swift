@@ -124,7 +124,7 @@ final class ReviewSessionTests: XCTestCase {
         XCTAssertEqual(updatedState.dueAt, now.addingTimeInterval(24 * 60 * 60))
         XCTAssertEqual(updatedState.lapses, 2)
         XCTAssertEqual(updatedState.lastReviewedAt, now)
-        XCTAssertEqual(updatedState.easeHint, 1.25)
+        XCTAssertEqual(updatedState.easeHint, 1.3)
 
         let log = try XCTUnwrap(try context.fetch(FetchDescriptor<ReviewLogRecord>()).first)
         XCTAssertEqual(log.cardID, cardID)

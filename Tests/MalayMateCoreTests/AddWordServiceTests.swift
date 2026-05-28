@@ -30,7 +30,7 @@ final class AddWordServiceTests: XCTestCase {
             XCTAssertEqual(reviewState.dueAt, Date(timeIntervalSince1970: 1_800_000_000))
             XCTAssertEqual(reviewState.lapses, 0)
             XCTAssertNil(reviewState.lastReviewedAt)
-            XCTAssertEqual(reviewState.easeHint, 1.0)
+            XCTAssertEqual(reviewState.easeHint, 2.5)
         }
 
         let malayToChinese = try XCTUnwrap(cards.first { $0.directionRaw == CardDirection.malayToChinese.rawValue })

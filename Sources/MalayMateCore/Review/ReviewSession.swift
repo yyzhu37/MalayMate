@@ -19,6 +19,10 @@ public final class ReviewSession {
     }
 
     public func dueCards(now: Date, limit: Int = 100) throws -> [DueReviewItem] {
+        guard limit > 0 else {
+            return []
+        }
+
         let states = try context.fetch(FetchDescriptor<ReviewStateRecord>()).filter { $0.dueAt <= now }
         let cards = try context.fetch(FetchDescriptor<CardRecord>())
         let words = try context.fetch(FetchDescriptor<WordRecord>())

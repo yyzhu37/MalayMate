@@ -4,7 +4,11 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-APP_DIR="$ROOT/build/MalayMate.app"
+APP_LINK="$ROOT/build/MalayMate.app"
+# Keep the real bundle outside this FileProvider-backed workspace; otherwise
+# FinderInfo xattrs are reattached and strict codesign verification fails.
+STAGING_ROOT="/private/tmp/malaymate-app-bundle-${USER:-$(id -u)}"
+APP_DIR="$STAGING_ROOT/MalayMate.app"
 CONTENTS_DIR="$APP_DIR/Contents"
 MACOS_DIR="$CONTENTS_DIR/MacOS"
 RESOURCES_DIR="$CONTENTS_DIR/Resources"
@@ -22,7 +26,8 @@ if [[ -z "${RESOURCE_BUNDLE:-}" || ! -d "$RESOURCE_BUNDLE" ]]; then
   exit 1
 fi
 
-rm -rf "$APP_DIR"
+rm -rf "$APP_DIR" "$APP_LINK"
+mkdir -p "$ROOT/build"
 mkdir -p "$MACOS_DIR" "$RESOURCES_DIR"
 
 cp "$RELEASE_DIR/MalayMate" "$MACOS_DIR/MalayMate"
@@ -36,8 +41,12 @@ test -f "$RESOURCES_DIR/MalayMate_MalayMateCore.bundle/open_frequency_starter_de
 if command -v codesign >/dev/null 2>&1; then
   xattr -cr "$APP_DIR"
   codesign --force --deep --sign - "$APP_DIR"
-  find "$APP_DIR" -exec xattr -d com.apple.FinderInfo {} + 2>/dev/null || true
-  codesign --verify --deep --strict --verbose=2 "$APP_DIR"
 fi
 
-echo "$APP_DIR"
+ln -s "$APP_DIR" "$APP_LINK"
+
+if command -v codesign >/dev/null 2>&1; then
+  codesign --verify --deep --strict --verbose=2 "$APP_LINK"
+fi
+
+echo "$APP_LINK"

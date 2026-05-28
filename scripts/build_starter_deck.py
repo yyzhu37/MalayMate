@@ -56,32 +56,41 @@ def read_frequency(path):
     return rows
 
 
-def read_dictionary(path):
+def dictionary_paths(paths):
+    if isinstance(paths, (str, Path)):
+        return [Path(paths)]
+    return [Path(path) for path in paths]
+
+
+def read_dictionary(paths):
     entries = {}
-    with Path(path).open("r", encoding="utf-8") as handle:
-        for line_number, line in enumerate(handle, start=1):
-            line = line.strip()
-            if not line:
-                continue
-            payload = json.loads(line)
-            term = (payload.get("term") or payload.get("word") or "").strip()
-            if not term:
-                raise ValueError(f"Dictionary row {line_number} must include term or word")
-            syllables = payload.get("syllables", [])
-            if isinstance(syllables, str):
-                syllables = [part.strip() for part in syllables.split(",") if part.strip()]
-            entries[term] = {
-                "term": term,
-                "partOfSpeech": payload.get("partOfSpeech") or payload.get("pos", ""),
-                "chineseMeaning": (payload.get("chineseMeaning") or payload.get("zh", "")).strip(),
-                "pronunciationNotes": payload.get("pronunciationNotes", ""),
-                "syllables": syllables,
-                "sourceUrl": payload.get("sourceUrl", ""),
-                "sourceName": payload.get("sourceName", "MalayMate sample dictionary"),
-                "license": payload.get("license", DEFAULT_LICENSE),
-                "attribution": payload.get("attribution", DEFAULT_ATTRIBUTION),
-                "reviewStatus": payload.get("reviewStatus", "needs-review"),
-            }
+    for path in dictionary_paths(paths):
+        with path.open("r", encoding="utf-8") as handle:
+            for line_number, line in enumerate(handle, start=1):
+                line = line.strip()
+                if not line:
+                    continue
+                payload = json.loads(line)
+                term = (payload.get("term") or payload.get("word") or "").strip()
+                if not term:
+                    raise ValueError(f"Dictionary row {line_number} in {path} must include term or word")
+                if term in entries:
+                    continue
+                syllables = payload.get("syllables", [])
+                if isinstance(syllables, str):
+                    syllables = [part.strip() for part in syllables.split(",") if part.strip()]
+                entries[term] = {
+                    "term": term,
+                    "partOfSpeech": payload.get("partOfSpeech") or payload.get("pos", ""),
+                    "chineseMeaning": (payload.get("chineseMeaning") or payload.get("zh", "")).strip(),
+                    "pronunciationNotes": payload.get("pronunciationNotes", ""),
+                    "syllables": syllables,
+                    "sourceUrl": payload.get("sourceUrl", ""),
+                    "sourceName": payload.get("sourceName", "MalayMate sample dictionary"),
+                    "license": payload.get("license", DEFAULT_LICENSE),
+                    "attribution": payload.get("attribution", DEFAULT_ATTRIBUTION),
+                    "reviewStatus": payload.get("reviewStatus", "needs-review"),
+                }
     return entries
 
 
@@ -171,6 +180,7 @@ def build_deck(frequency, dictionary, sentences, limit=None):
     frequency_rows = read_frequency(frequency)
     dictionary_entries = read_dictionary(dictionary)
     sentence_rows = read_sentences(sentences)
+    frequency_source_url = f"local-file://{Path(frequency).as_posix()}"
     sorted_rows = sorted(frequency_rows, key=lambda row: row["count"], reverse=True)
     selected_rows = sorted_rows[:limit] if limit is not None else sorted_rows
 
@@ -204,10 +214,10 @@ def build_deck(frequency, dictionary, sentences, limit=None):
                     ),
                     source(
                         "frequency",
-                        "MalayMate curated beginner frequency list",
-                        "local-file://content/raw/sample_frequency.tsv",
-                        "CC BY 4.0",
-                        "MalayMate curated beginner vocabulary list",
+                        "MalayMate open dictionary frequency selection",
+                        frequency_source_url,
+                        "open frequency source",
+                        "MalayMate frequency-ranked selection",
                         "needs-review",
                     ),
                 ],
@@ -220,8 +230,8 @@ def build_deck(frequency, dictionary, sentences, limit=None):
         "decks": [
             {
                 "id": "starter-local-open-access",
-                "name": "Starter Local Open-Access",
-                "description": "Locally built Malay starter deck from open-access source files.",
+                "name": "Open Dictionary Malay 300",
+                "description": "Frequency-ranked Malay entries extracted from Kaikki/Wiktionary with local examples.",
                 "isStarter": True,
                 "words": words,
             }
@@ -234,7 +244,7 @@ def build_deck(frequency, dictionary, sentences, limit=None):
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Build a MalayMate starter deck JSON file.")
     parser.add_argument("--frequency", required=True)
-    parser.add_argument("--dictionary", required=True)
+    parser.add_argument("--dictionary", required=True, action="append")
     parser.add_argument("--sentences", required=True)
     parser.add_argument("--output", required=True)
     parser.add_argument("--limit", type=int, default=None)

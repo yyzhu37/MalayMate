@@ -6,7 +6,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from build_starter_deck import build_deck, main
+from build_starter_deck import build_deck, main, read_dictionary
+from extract_kaikki_dictionary import extract_entries, normalize_entry
 
 
 class ContentBuilderTests(unittest.TestCase):
@@ -127,6 +128,99 @@ class ContentBuilderTests(unittest.TestCase):
             payload = build_deck(frequency_path, dictionary_path, sentences_path)
 
         self.assertEqual(payload["decks"][0]["words"][0]["chineseMeaning"], "吃")
+
+    def test_multiple_dictionary_files_keep_first_entry_as_override(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            first = tmp_path / "first.jsonl"
+            second = tmp_path / "second.jsonl"
+            first.write_text(json.dumps({"term": "makan", "zh": "吃"}, ensure_ascii=False) + "\n", encoding="utf-8")
+            second.write_text(json.dumps({"term": "makan", "zh": "to eat"}, ensure_ascii=False) + "\n", encoding="utf-8")
+
+            entries = read_dictionary([first, second])
+
+        self.assertEqual(entries["makan"]["chineseMeaning"], "吃")
+
+    def test_extracts_kaikki_entry_to_builder_dictionary_row(self):
+        payload = {
+            "word": "rumah",
+            "lang_code": "ms",
+            "pos": "noun",
+            "sounds": [{"ipa": "/rumah/"}],
+            "hyphenations": [{"parts": ["ru", "mah"]}],
+            "senses": [{"glosses": ["house; home"]}],
+        }
+
+        row = normalize_entry(payload)
+
+        self.assertEqual(row["term"], "rumah")
+        self.assertEqual(row["pos"], "noun")
+        self.assertEqual(row["zh"], "英文释义：house; home")
+        self.assertEqual(row["pronunciationNotes"], "/rumah/")
+        self.assertEqual(row["syllables"], ["ru", "mah"])
+        self.assertEqual(row["sourceName"], "Kaikki/Wiktionary")
+
+    def test_extract_entries_filters_non_lemma_rows_and_limits_output(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            source = tmp_path / "kaikki.jsonl"
+            frequency = tmp_path / "frequency.txt"
+            source.write_text(
+                "\n".join(
+                    [
+                        json.dumps({"word": "Rumah", "lang_code": "ms", "pos": "name", "senses": [{"glosses": ["a name"]}]}),
+                        json.dumps({"word": "rumah", "lang_code": "ms", "pos": "noun", "senses": [{"glosses": ["house"]}]}),
+                        json.dumps({"word": "makan", "lang_code": "ms", "pos": "verb", "senses": [{"glosses": ["to eat"]}]}),
+                        json.dumps({"word": "jalan raya", "lang_code": "ms", "pos": "noun", "senses": [{"glosses": ["road"]}]}),
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            frequency.write_text("makan 100\nrumah 90\n", encoding="utf-8")
+
+            rows = extract_entries(source, limit=1, excluded_terms={"makan"}, frequency_path=frequency)
+
+        self.assertEqual([row["term"] for row in rows], ["rumah"])
+
+    def test_extract_entries_uses_frequency_order_when_available(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            source = tmp_path / "kaikki.jsonl"
+            frequency = tmp_path / "frequency.txt"
+            source.write_text(
+                "\n".join(
+                    [
+                        json.dumps({"word": "api", "lang_code": "ms", "pos": "noun", "senses": [{"glosses": ["fire"]}]}),
+                        json.dumps({"word": "rumah", "lang_code": "ms", "pos": "noun", "senses": [{"glosses": ["house"]}]}),
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            frequency.write_text("rumah 200\napi 100\n", encoding="utf-8")
+
+            rows = extract_entries(source, limit=2, frequency_path=frequency)
+
+        self.assertEqual([row["term"] for row in rows], ["rumah", "api"])
+        self.assertEqual([row["_selectionCount"] for row in rows], [200, 100])
+
+    def test_kaikki_normalizer_skips_abbreviations_and_pronunciation_spellings(self):
+        abbreviation = {
+            "word": "aq",
+            "lang_code": "ms",
+            "pos": "pron",
+            "senses": [{"glosses": ["abbreviation of aku"]}],
+        }
+        pronunciation_spelling = {
+            "word": "ape",
+            "lang_code": "ms",
+            "pos": "pron",
+            "senses": [{"glosses": ["pronunciation spelling of apa"]}],
+        }
+
+        self.assertIsNone(normalize_entry(abbreviation))
+        self.assertIsNone(normalize_entry(pronunciation_spelling))
 
     def test_generated_ids_are_unique_and_prefixed(self):
         with tempfile.TemporaryDirectory() as tmp:

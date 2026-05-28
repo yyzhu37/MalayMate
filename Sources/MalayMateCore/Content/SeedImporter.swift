@@ -25,12 +25,10 @@ public struct SeedImporter {
     @MainActor
     public func importDecks(from data: Data, into context: ModelContext, now: Date) throws -> SeedImportSummary {
         let collection = try JSONDecoder.seedDecoder.decode(SeedDeckCollection.self, from: data)
-        let incomingDeckIDs = Set(collection.decks.map(\.id))
         let existingDecks = try context.fetch(FetchDescriptor<DeckRecord>())
-        let existingIncomingDeckIDs = Set(existingDecks.map(\.id)).intersection(incomingDeckIDs)
-        guard existingIncomingDeckIDs != incomingDeckIDs else {
-            return SeedImportSummary(decksInserted: 0, wordsInserted: 0, cardsInserted: 0)
-        }
+        let existingDecksByID = Dictionary(uniqueKeysWithValues: existingDecks.map { ($0.id, $0) })
+        let existingWords = try context.fetch(FetchDescriptor<WordRecord>())
+        var existingWordIDs = Set(existingWords.map(\.id))
 
         var decksInserted = 0
         var wordsInserted = 0
@@ -38,32 +36,22 @@ public struct SeedImporter {
         let scheduler = LeitnerScheduler()
 
         for deck in collection.decks {
-            guard !existingIncomingDeckIDs.contains(deck.id) else {
-                continue
-            }
-
-            var wordIDs: [String] = []
+            var wordIDs = existingDecksByID[deck.id].map { decodeWordIDs(from: $0.wordIDsJSON) } ?? []
+            var deckWordIDSet = Set(wordIDs)
 
             for seedWord in deck.words {
                 let wordID = stableUUID(from: seedWord.id)
-                wordIDs.append(wordID.uuidString)
-                let word = WordRecord(
-                    id: wordID,
-                    term: seedWord.term,
-                    languageCode: seedWord.languageCode,
-                    chineseMeaning: seedWord.chineseMeaning,
-                    partOfSpeech: seedWord.partOfSpeech,
-                    pronunciationNotes: seedWord.pronunciationNotes,
-                    syllablesJSON: try encodeJSONString(seedWord.syllables),
-                    examplesJSON: try encodeJSONString(seedWord.examples),
-                    sourceRefsJSON: try encodeJSONString(seedWord.sourceRefs),
-                    reviewStatus: "reviewed",
-                    createdAt: now,
-                    updatedAt: now,
-                    learningStatusRaw: LearningStatus.new.rawValue,
-                    learnedAt: nil
-                )
-                context.insert(word)
+                if !deckWordIDSet.contains(wordID.uuidString) {
+                    wordIDs.append(wordID.uuidString)
+                    deckWordIDSet.insert(wordID.uuidString)
+                }
+
+                guard !existingWordIDs.contains(wordID) else {
+                    continue
+                }
+
+                try insertWord(seedWord, wordID: wordID, into: context, now: now)
+                existingWordIDs.insert(wordID)
                 wordsInserted += 1
 
                 let directions: [CardDirection] = [.malayToChinese, .chineseToMalay]
@@ -92,23 +80,57 @@ public struct SeedImporter {
                 }
             }
 
-            context.insert(DeckRecord(
-                id: deck.id,
-                name: deck.name,
-                deckDescription: deck.description,
-                isStarter: deck.isStarter,
-                wordIDsJSON: try encodeJSONString(wordIDs),
-                createdAt: now
-            ))
-            decksInserted += 1
+            if let existingDeck = existingDecksByID[deck.id] {
+                existingDeck.name = deck.name
+                existingDeck.deckDescription = deck.description
+                existingDeck.isStarter = deck.isStarter
+                existingDeck.wordIDsJSON = try encodeJSONString(wordIDs)
+            } else {
+                context.insert(DeckRecord(
+                    id: deck.id,
+                    name: deck.name,
+                    deckDescription: deck.description,
+                    isStarter: deck.isStarter,
+                    wordIDsJSON: try encodeJSONString(wordIDs),
+                    createdAt: now
+                ))
+                decksInserted += 1
+            }
         }
 
         try context.save()
         return SeedImportSummary(decksInserted: decksInserted, wordsInserted: wordsInserted, cardsInserted: cardsInserted)
     }
 
+    private func insertWord(_ seedWord: SeedWord, wordID: UUID, into context: ModelContext, now: Date) throws {
+        let word = WordRecord(
+            id: wordID,
+            term: seedWord.term,
+            languageCode: seedWord.languageCode,
+            chineseMeaning: seedWord.chineseMeaning,
+            partOfSpeech: seedWord.partOfSpeech,
+            pronunciationNotes: seedWord.pronunciationNotes,
+            syllablesJSON: try encodeJSONString(seedWord.syllables),
+            examplesJSON: try encodeJSONString(seedWord.examples),
+            sourceRefsJSON: try encodeJSONString(seedWord.sourceRefs),
+            reviewStatus: "reviewed",
+            createdAt: now,
+            updatedAt: now,
+            learningStatusRaw: LearningStatus.new.rawValue,
+            learnedAt: nil
+        )
+        context.insert(word)
+    }
+
     private func encodeJSONString<T: Encodable>(_ value: T) throws -> String {
         String(decoding: try JSONEncoder.seedEncoder.encode(value), as: UTF8.self)
+    }
+
+    private func decodeWordIDs(from json: String) -> [String] {
+        guard let data = json.data(using: .utf8) else {
+            return []
+        }
+        return (try? JSONDecoder().decode([String].self, from: data)) ?? []
     }
 
     private func stableUUID(from string: String) -> UUID {

@@ -19,11 +19,11 @@ final class GeneratedContentTests: XCTestCase {
 
         XCTAssertEqual(collection.decks.count, 1)
         XCTAssertEqual(summary.decksInserted, 1)
-        XCTAssertEqual(summary.wordsInserted, 40)
-        XCTAssertEqual(summary.cardsInserted, 80)
+        XCTAssertEqual(summary.wordsInserted, 300)
+        XCTAssertEqual(summary.cardsInserted, 600)
         XCTAssertEqual(try context.fetch(FetchDescriptor<DeckRecord>()).count, 1)
-        XCTAssertEqual(try context.fetch(FetchDescriptor<WordRecord>()).count, 40)
-        XCTAssertEqual(cards.count, 80)
+        XCTAssertEqual(try context.fetch(FetchDescriptor<WordRecord>()).count, 300)
+        XCTAssertEqual(cards.count, 600)
         XCTAssertTrue(cards.allSatisfy { !$0.prompt.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty })
         XCTAssertTrue(cards.allSatisfy { !$0.answer.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty })
     }

@@ -1,7 +1,9 @@
 .superpowers/
+docs/superpowers/
 .build/
 .swiftpm/
 build/
+dist/
 content/cache/
 __pycache__/
 *.py[cod]

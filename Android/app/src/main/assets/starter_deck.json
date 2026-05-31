@@ -1,0 +1,250 @@
+{
+  "version": 1,
+  "generatedAt": "2026-05-28T00:00:00Z",
+  "decks": [
+    {
+      "id": "starter-basics",
+      "name": "Starter Basics",
+      "description": "Core Malay words for first sentences.",
+      "isStarter": true,
+      "words": [
+        {
+          "id": "word-saya",
+          "term": "saya",
+          "languageCode": "ms",
+          "chineseMeaning": "我",
+          "partOfSpeech": "pronoun",
+          "pronunciationNotes": "SAH-yah",
+          "syllables": ["sa", "ya"],
+          "examples": [
+            {
+              "id": "example-saya-belajar",
+              "malay": "Saya belajar.",
+              "chinese": "我学习。",
+              "sourceRefs": [
+                {
+                  "field": "example",
+                  "sourceName": "MalayMate Starter Deck",
+                  "sourceUrl": "https://example.com/malaymate/starter-deck",
+                  "license": "CC BY 4.0",
+                  "attribution": "MalayMate authored starter content",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "human-reviewed"
+                }
+              ]
+            }
+          ],
+          "sourceRefs": [
+            {
+              "field": "term",
+              "sourceName": "MalayMate Starter Deck",
+              "sourceUrl": "https://example.com/malaymate/starter-deck",
+              "license": "CC BY 4.0",
+              "attribution": "MalayMate authored starter content",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "human-reviewed"
+            }
+          ]
+        },
+        {
+          "id": "word-air",
+          "term": "air",
+          "languageCode": "ms",
+          "chineseMeaning": "水",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "AH-eer",
+          "syllables": ["air"],
+          "examples": [
+            {
+              "id": "example-ini-air",
+              "malay": "Ini air.",
+              "chinese": "这是水。",
+              "sourceRefs": [
+                {
+                  "field": "example",
+                  "sourceName": "MalayMate Starter Deck",
+                  "sourceUrl": "https://example.com/malaymate/starter-deck",
+                  "license": "CC BY 4.0",
+                  "attribution": "MalayMate authored starter content",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "human-reviewed"
+                }
+              ]
+            }
+          ],
+          "sourceRefs": [
+            {
+              "field": "term",
+              "sourceName": "MalayMate Starter Deck",
+              "sourceUrl": "https://example.com/malaymate/starter-deck",
+              "license": "CC BY 4.0",
+              "attribution": "MalayMate authored starter content",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "human-reviewed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "starter-food",
+      "name": "Starter Food",
+      "description": "Food and drink words for simple daily phrases.",
+      "isStarter": true,
+      "words": [
+        {
+          "id": "word-makan",
+          "term": "makan",
+          "languageCode": "ms",
+          "chineseMeaning": "吃；进食",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "MAH-kahn",
+          "syllables": ["ma", "kan"],
+          "examples": [
+            {
+              "id": "example-saya-makan-nasi",
+              "malay": "Saya makan nasi.",
+              "chinese": "我吃米饭。",
+              "sourceRefs": [
+                {
+                  "field": "example",
+                  "sourceName": "MalayMate Starter Deck",
+                  "sourceUrl": "https://example.com/malaymate/starter-deck",
+                  "license": "CC BY 4.0",
+                  "attribution": "MalayMate authored starter content",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "human-reviewed"
+                }
+              ]
+            }
+          ],
+          "sourceRefs": [
+            {
+              "field": "term",
+              "sourceName": "MalayMate Starter Deck",
+              "sourceUrl": "https://example.com/malaymate/starter-deck",
+              "license": "CC BY 4.0",
+              "attribution": "MalayMate authored starter content",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "human-reviewed"
+            }
+          ]
+        },
+        {
+          "id": "word-minum",
+          "term": "minum",
+          "languageCode": "ms",
+          "chineseMeaning": "喝；饮用",
+          "partOfSpeech": "verb",
+          "pronunciationNotes": "MEE-noom",
+          "syllables": ["mi", "num"],
+          "examples": [
+            {
+              "id": "example-saya-minum-air",
+              "malay": "Saya minum air.",
+              "chinese": "我喝水。",
+              "sourceRefs": [
+                {
+                  "field": "example",
+                  "sourceName": "MalayMate Starter Deck",
+                  "sourceUrl": "https://example.com/malaymate/starter-deck",
+                  "license": "CC BY 4.0",
+                  "attribution": "MalayMate authored starter content",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "human-reviewed"
+                }
+              ]
+            }
+          ],
+          "sourceRefs": [
+            {
+              "field": "term",
+              "sourceName": "MalayMate Starter Deck",
+              "sourceUrl": "https://example.com/malaymate/starter-deck",
+              "license": "CC BY 4.0",
+              "attribution": "MalayMate authored starter content",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "human-reviewed"
+            }
+          ]
+        },
+        {
+          "id": "word-nasi",
+          "term": "nasi",
+          "languageCode": "ms",
+          "chineseMeaning": "米饭",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "NAH-see",
+          "syllables": ["na", "si"],
+          "examples": [
+            {
+              "id": "example-nasi-ini-panas",
+              "malay": "Nasi ini panas.",
+              "chinese": "这份米饭是热的。",
+              "sourceRefs": [
+                {
+                  "field": "example",
+                  "sourceName": "MalayMate Starter Deck",
+                  "sourceUrl": "https://example.com/malaymate/starter-deck",
+                  "license": "CC BY 4.0",
+                  "attribution": "MalayMate authored starter content",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "human-reviewed"
+                }
+              ]
+            }
+          ],
+          "sourceRefs": [
+            {
+              "field": "term",
+              "sourceName": "MalayMate Starter Deck",
+              "sourceUrl": "https://example.com/malaymate/starter-deck",
+              "license": "CC BY 4.0",
+              "attribution": "MalayMate authored starter content",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "human-reviewed"
+            }
+          ]
+        },
+        {
+          "id": "word-kopi",
+          "term": "kopi",
+          "languageCode": "ms",
+          "chineseMeaning": "咖啡",
+          "partOfSpeech": "noun",
+          "pronunciationNotes": "KOH-pee",
+          "syllables": ["ko", "pi"],
+          "examples": [
+            {
+              "id": "example-saya-minum-kopi",
+              "malay": "Saya minum kopi.",
+              "chinese": "我喝咖啡。",
+              "sourceRefs": [
+                {
+                  "field": "example",
+                  "sourceName": "MalayMate Starter Deck",
+                  "sourceUrl": "https://example.com/malaymate/starter-deck",
+                  "license": "CC BY 4.0",
+                  "attribution": "MalayMate authored starter content",
+                  "retrievedAt": "2026-05-28T00:00:00Z",
+                  "reviewStatus": "human-reviewed"
+                }
+              ]
+            }
+          ],
+          "sourceRefs": [
+            {
+              "field": "term",
+              "sourceName": "MalayMate Starter Deck",
+              "sourceUrl": "https://example.com/malaymate/starter-deck",
+              "license": "CC BY 4.0",
+              "attribution": "MalayMate authored starter content",
+              "retrievedAt": "2026-05-28T00:00:00Z",
+              "reviewStatus": "human-reviewed"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

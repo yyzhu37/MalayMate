@@ -6,3 +6,8 @@ content/cache/
 __pycache__/
 *.py[cod]
 .DS_Store
+Android/local.properties
+Android/.gradle/
+Android/.gradle-home/
+Android/build/
+Android/app/build/
